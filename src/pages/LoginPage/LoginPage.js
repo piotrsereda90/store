@@ -6,8 +6,9 @@ const LoginWrapper = styled.div`
 display:flex;
 justify-content: center;
 align-items: center;
+margin-top: -120px;
 background-color:#202528;
-min-height: 100vh;
+min-height: calc(100vh + 120px);
 `;
 
 const LoginPage = () => {
