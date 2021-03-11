@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 
+import api from '../../api/'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { useFormik  } from 'formik';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import * as yup from 'yup';
-import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid';
 
 const Form =  styled.form`
 display:flex;
@@ -97,6 +100,15 @@ span:hover{
   text-decoration: underline;
 }
 `
+const Tips = styled.div`
+display:flex;
+justify-content:center
+font-size:14px;
+color: #3f51b5;
+border: 1px solid red;
+margin-top: 30px;
+padding:10px
+`
 const iconUser =<FontAwesomeIcon icon={faUserCircle}/>
 
 const validationSchema = yup.object().shape({
@@ -110,6 +122,10 @@ const validationSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
+  let history = useHistory()
+  const [loginError, setLoginError]= useState(false)
+  // const token = uuidv4();
+  // console.log(token)
 
  const formik = useFormik({
    initialValues:{
@@ -118,8 +134,21 @@ const LoginForm = () => {
    },
    validationSchema,
    onSubmit: values => {
-     alert(JSON.stringify(values, null,2))
-   },
+    return api
+    .login(values.emailAddress, values.password)
+    .then(result=> {
+      if(result.data.email===values.emailAddress && result.data.password===values.password){
+        const token = uuidv4();
+        sessionStorage.setItem('accessToken', token );
+        history.push('/admin/dashboard');
+      }else{
+        setLoginError(true)
+      }
+    })
+    .catch((err)=>{
+      throw new Error(err)
+    })
+  },
  });
  const passwordError = formik.errors.password? (
    <ErrorText>{formik.errors.password}</ErrorText>
@@ -127,6 +156,8 @@ const LoginForm = () => {
  const emailError = formik.errors.emailAddress? (
   <ErrorText>{formik.errors.emailAddress}</ErrorText>
 ):null
+ const loginErrorText = <ErrorText>Błędny login lub hasło</ErrorText>
+
 return (
   <section>
   <IconUser>{iconUser}</IconUser>
@@ -150,10 +181,11 @@ return (
       onChange ={formik.handleChange}
       value = {formik.password}
     />
-     < ErrorContainer>{passwordError}</ErrorContainer>
+     < ErrorContainer>{passwordError|| loginError? loginErrorText :null}</ErrorContainer>
      <Button type="submit">sign in</Button>
   </Form>
   <ForgotPasswordSignIn><span>Forgot password?</span><span>Don't have an account? Sign up</span></ForgotPasswordSignIn>
+  <Tips><span>You can use babanarowerze5@gmail.com and password jakiehaslo</span></Tips>
   </section>
 )
 };

@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const SecureRoute = ({component:Component, ...rest}) => (
   <Route {...rest} render={props => {
-     return localStorage.getItem(false)
+     return sessionStorage.getItem('accessToken')
      ? <Component {...props}/>
      : <Redirect to={{pathname: '/login', state:{from: props.location}}}/>
   }}/>

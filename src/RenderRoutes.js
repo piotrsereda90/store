@@ -11,7 +11,7 @@ export function renderRoutes(){
   return (
     <Switch>
     <Route exact path='/' component={DashboardPage}/>
-    <SecureRoute exact path='/admin' component={AdminPage}/>
+    <SecureRoute exact path='/admin/dashboard' component={AdminPage}/>
     <Route path='/login' component={LoginPage}/>
 </Switch>
    );

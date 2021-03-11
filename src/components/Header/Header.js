@@ -11,7 +11,7 @@ const Header = () => {
   return ( 
   <div>
     to jest Header
-    <Link to='/admin'>Admin</Link>
+    <Link to='/admin/dashboard'>Admin</Link>
   </div> );
 }
  
