@@ -4,10 +4,10 @@ import Header from '../../components/Header'
 
 const DashboardPage = () => {
   return (
-  <div>
-   <div> to jest dashboard </div>
-   <div><Header/></div>
-  </div> );
+    <nav>
+      <Header/>
+    </nav>
+   );
 }
  
 export default DashboardPage;
