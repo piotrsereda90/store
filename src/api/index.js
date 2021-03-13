@@ -11,8 +11,8 @@ const axiosInstance = axios.create({
 });
 
 const api = {
-  async login(email, password){
-    return await axiosInstance.post('/login', {email, password});
+   login(email, password){
+    return  axiosInstance.post('/login', {email, password});
   },
   me(){
     return axiosInstance.get('/me');

@@ -1,14 +1,13 @@
-import React from 'react'
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
+import React,{useState, } from 'react'
+import {
+  Link,
+} from "react-router-dom";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import image from '../../assets/image/logo_deer.png';
+
+
 
 const TopBar = styled.header`
 display:flex;
@@ -36,21 +35,24 @@ align-items:center;
 justify-content: center;
 `
 const User = styled.div`
-// display:block;
-color:white;
+position:relative;
 width: 50px;
 height:50px;
 font-size:40px;
 margin-left: 20px;
 margin-right: 20px;
+color:azure;
 `
 const ShoppingBag = styled.div`
-// display:block;
-color:white;
 width: 50px;
 height:50px;
-font-size:40px
+font-size:40px;
+list-style-type:none;
+cursor:pointer;
 `
+const liStyle = {
+  color:'azure'
+}
 const OrderNumber = styled.span`
 position:absolute;
 top:34px;
@@ -59,23 +61,75 @@ font-weight:900;
 font-size: 14px;
 color:#202528;
 `
+const UserMenu = styled.div`
+position:absolute;
+top:50px;
+left:-110px;
+width:170px;
+height:90px;
+background-color:#181B1E;
+`
+const UserMenuUl = styled.ul`
+  listStyle: none;
+  padding: 0;
+  margin: 0;
+`
+const UserMenuLi = {
+  fontSize: 16,
+  listStyleType:'none',
+  display:'block',
+  textDecoration:'none',
+  color:'azure',
+  marginTop: 15,
+  paddingLeft: 15
+
+}
+
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
  shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>
 }
 
 function Header() {
+  const [loginStatus, setLoginStatus]= useState(false)
+  const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false)
+
+  const handelUserMenu = () =>  setUserMenuIsOpen(prevState => !prevState)
+
+  // const handelLoginStatus = () => {
+  //   return sessionStorage.getItem('accessToken')
+  //   ?setLoginStatus(true)
+  //   :setLoginStatus(false)
+
+  // }
+
+  const loginLabel = loginStatus? 'Log out':'Log in'
+
+
   return (
     <TopBar>
       <Logo>
-        <img src={image} alt='logo' />
+        <Link to='/'><img src={image} alt='logo' /></Link>
       </Logo>
       <RightToolBar>
-        <ShoppingBag>{picture.shoppingBag}<OrderNumber>0</OrderNumber></ShoppingBag>
-        <User>{picture.iconUser}</User>
+        <ShoppingBag>
+          <Link to='/dashboard/basket' style={liStyle}>{picture.shoppingBag}</Link>
+          <OrderNumber>0</OrderNumber>
+        </ShoppingBag>
+        <User
+          onClick={handelUserMenu}>
+          <div>{picture.iconUser}</div>
+          {UserMenuIsOpen
+          ?<UserMenu>
+            <UserMenuUl>
+              <Link to='admin/dashboard' style={UserMenuLi}>  Admin panel</Link> 
+              <li style={UserMenuLi}>{loginLabel}</li>
+            </UserMenuUl>
+          </UserMenu>
+          : null}
+        </User>
       </RightToolBar>
 
     </TopBar>);
 }
- 
 export default Header;
