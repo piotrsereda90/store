@@ -1,13 +1,12 @@
-import React,{useState, } from 'react'
+import React,{useState, useEffect } from 'react'
 import {
   Link,
+  useHistory
 } from "react-router-dom";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import image from '../../assets/image/logo_deer.png';
-
-
 
 const TopBar = styled.header`
 display:flex;
@@ -41,18 +40,30 @@ height:50px;
 font-size:40px;
 margin-left: 20px;
 margin-right: 20px;
-color:azure;
+color: azure;
+cursor:pointer;
+&:hover{
+  color: #816952;
+  transition: .2s;
+}
 `
 const ShoppingBag = styled.div`
 width: 50px;
 height:50px;
 font-size:40px;
 list-style-type:none;
-cursor:pointer;
-`
-const liStyle = {
-  color:'azure'
+&:hover{
+  color: #816952;
+  transition: .2s;
 }
+`
+const ShoppingBagLi = styled(Link)`
+color:azure;
+&:hover{
+  color: #816952;
+  transition: .2s;
+}
+`
 const OrderNumber = styled.span`
 position:absolute;
 top:34px;
@@ -74,37 +85,56 @@ const UserMenuUl = styled.ul`
   padding: 0;
   margin: 0;
 `
-const UserMenuLi = {
-  fontSize: 16,
-  listStyleType:'none',
-  display:'block',
-  textDecoration:'none',
-  color:'azure',
-  marginTop: 15,
-  paddingLeft: 15
-
+const UserMenuLi = styled.li`
+  display:block;
+  font-size: 16px;
+  list-style-type:none;
+  text-decoration:none;
+  color:azure;
+  margin-top: 15px;
+  padding-left: 15px;
+  &:hover{
+    color: #3f51b5;
+    transition: .2s;
+  }
+`
+const UserMenuLink = styled(Link)`
+color:azure;
+text-decoration: none;
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  &:hover{
+    color: #3f51b5;
+    transition: .2s;;
+  }
 }
-
+`
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
  shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>
-}
+};
 
 function Header() {
-  const [loginStatus, setLoginStatus]= useState(false)
-  const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false)
+  const [loginStatus, setLoginStatus]= useState(false);
+  const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false);
 
-  const handelUserMenu = () =>  setUserMenuIsOpen(prevState => !prevState)
+  let history = useHistory()
+  let session = sessionStorage.getItem('accessToken')
+  const handelUserMenu = () =>  setUserMenuIsOpen(prevState => !prevState);
 
-  // const handelLoginStatus = () => {
-  //   return sessionStorage.getItem('accessToken')
-  //   ?setLoginStatus(true)
-  //   :setLoginStatus(false)
+  const loginLabel = loginStatus? 'Log out':'Log in';
 
-  // }
+  const handelLogIn = () => {
+    loginStatus&&sessionStorage.removeItem('accessToken')
+    !loginStatus&& history.push('/login')
+  }
 
-  const loginLabel = loginStatus? 'Log out':'Log in'
+  useEffect(()=>{
+    return session
+    ?setLoginStatus(true)
+    :setLoginStatus(false)
 
+    },[session]);
 
   return (
     <TopBar>
@@ -113,7 +143,7 @@ function Header() {
       </Logo>
       <RightToolBar>
         <ShoppingBag>
-          <Link to='/dashboard/basket' style={liStyle}>{picture.shoppingBag}</Link>
+          <li><ShoppingBagLi to='/dashboard/basket'>{picture.shoppingBag}</ShoppingBagLi></li>
           <OrderNumber>0</OrderNumber>
         </ShoppingBag>
         <User
@@ -122,8 +152,8 @@ function Header() {
           {UserMenuIsOpen
           ?<UserMenu>
             <UserMenuUl>
-              <Link to='admin/dashboard' style={UserMenuLi}>  Admin panel</Link> 
-              <li style={UserMenuLi}>{loginLabel}</li>
+              <UserMenuLi><UserMenuLink to='admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
+              <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
             </UserMenuUl>
           </UserMenu>
           : null}
