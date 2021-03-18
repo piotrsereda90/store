@@ -6,41 +6,60 @@ import  SideBar from '../../components/SideBar'
 import  Product from '../../components/Product'
 import  RecommendedProduct from '../../components/RecommendedProduct'
 import  Footer from '../../components/Footer'
+import background from '../../assets/image/background_deer.jpg'
+import forest from '../../assets/image/forest.jpg'
 
 const Main = styled.main`
 display:flex;
-// flex-wrap:wrap;
+flex-direction:column;
+background:#0f1214;
+margin-left:200px;
+margin-top: 90px;
+min-height: 100vh;
+
+
 `
 const SectionSideBar = styled.section`
-width: 200px;
-border: 3px solid #202528;
+width: 15vw;
 border-top:none;
 `
 const SectionProducts = styled.section`
-width: 100%;
-border: 3px solid #202528;
-border-top:none;
+// width: calc(80vw + 200px);
 `
-
-
-
+const SectionBackground = styled.div`
+background-image:url(${background});
+width: 100%;
+height: 70vh;
+background-size: cover;
+background-position:0% 70%;
+background-attachment:fixed
+}
+`
+const SectionTitle = styled.section`
+color: azure;
+font-size: 30px;
+text-align:center;
+padding: 20px
+`
 const DashboardPage = () => {
   return (
     <>
       <nav>
        <Header/>
       </nav>
-      <Main>
+      {/* <SectionBackground></SectionBackground> */}
         <SectionSideBar>
           <SideBar/>
         </SectionSideBar>
+      <Main>
+        <SectionTitle>PRODUKTY</SectionTitle>
         <SectionProducts>
           <Product/>
         </SectionProducts>
       </Main>
       <section>
-          <RecommendedProduct/>
-        </section>
+        <RecommendedProduct/>
+      </section>
       <footer><Footer/></footer>
     </>
    );

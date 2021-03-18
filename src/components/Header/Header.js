@@ -10,11 +10,15 @@ import image from '../../assets/image/logo_deer.png';
 
 const TopBar = styled.header`
 display:flex;
-flex-basis: 100wv;
+position:fixed;
+top:0;
+left:0;
+width: 100vw;
 padding: 10px;
-background-color:#202528;
-height: 60px;
+background-color:#282C34;
+height: 90px;
 justify-content: space-between;
+border-bottom: 1px solid #0f1214;
 
 `
 const Logo = styled.div`
@@ -35,6 +39,7 @@ justify-content: center;
 `
 const User = styled.div`
 position:relative;
+line-height:1;
 width: 50px;
 height:50px;
 font-size:40px;
@@ -50,24 +55,22 @@ cursor:pointer;
 const ShoppingBag = styled.div`
 width: 50px;
 height:50px;
+line-height:1;
 font-size:40px;
 list-style-type:none;
-&:hover{
-  color: #816952;
-  transition: .2s;
-}
 `
 const ShoppingBagLi = styled(Link)`
 color:azure;
+position:relative;
 &:hover{
   color: #816952;
   transition: .2s;
 }
 `
-const OrderNumber = styled.span`
+const OrderAmount = styled.span`
 position:absolute;
-top:34px;
-left:13px;
+top:25px;
+left:14px;
 font-weight:900;
 font-size: 14px;
 color:#202528;
@@ -94,7 +97,7 @@ const UserMenuLi = styled.li`
   margin-top: 15px;
   padding-left: 15px;
   &:hover{
-    color: #3f51b5;
+    color: #816952;
     transition: .2s;
   }
 `
@@ -104,10 +107,13 @@ text-decoration: none;
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
   &:hover{
-    color: #3f51b5;
+    color: #816952;
     transition: .2s;;
   }
 }
+`
+const SearchWrapper = styled.div`
+margin-right: 10px;
 `
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
@@ -120,6 +126,7 @@ function Header() {
 
   let history = useHistory()
   let session = sessionStorage.getItem('accessToken')
+
   const handelUserMenu = () =>  setUserMenuIsOpen(prevState => !prevState);
 
   const loginLabel = loginStatus? 'Log out':'Log in';
@@ -142,9 +149,11 @@ function Header() {
         <Link to='/'><img src={image} alt='logo' /></Link>
       </Logo>
       <RightToolBar>
+        <SearchWrapper>
+          {/* <Search/> */}
+        </SearchWrapper>
         <ShoppingBag>
-          <li><ShoppingBagLi to='/dashboard/basket'>{picture.shoppingBag}</ShoppingBagLi></li>
-          <OrderNumber>0</OrderNumber>
+          <li><ShoppingBagLi to='/dashboard/basket'>{picture.shoppingBag}<OrderAmount>0</OrderAmount></ShoppingBagLi></li>
         </ShoppingBag>
         <User
           onClick={handelUserMenu}>

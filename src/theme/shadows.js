@@ -1,0 +1,1 @@
+export const mainDark = '#202528'

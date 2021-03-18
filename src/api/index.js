@@ -19,6 +19,9 @@ const api = {
   },
   logout(){
     return axiosInstance.post('./logout');
-  }
+  },
+  accessories(){
+    return axiosInstance.get('/accessories');
+  },
 }
 export default api;
