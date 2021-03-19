@@ -3,11 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from '../../components/Header'
 import  SideBar from '../../components/SideBar'
-import  Product from '../../components/Product'
+import  ProductsCard from '../../components/ProductsCard'
 import  RecommendedProduct from '../../components/RecommendedProduct'
 import  Footer from '../../components/Footer'
-import background from '../../assets/image/background_deer.jpg'
-import forest from '../../assets/image/forest.jpg'
 
 const Main = styled.main`
 display:flex;
@@ -26,15 +24,15 @@ border-top:none;
 const SectionProducts = styled.section`
 // width: calc(80vw + 200px);
 `
-const SectionBackground = styled.div`
-background-image:url(${background});
-width: 100%;
-height: 70vh;
-background-size: cover;
-background-position:0% 70%;
-background-attachment:fixed
-}
-`
+// const SectionBackground = styled.div`
+// background-image:url(${background});
+// width: 100%;
+// height: 70vh;
+// background-size: cover;
+// background-position:0% 70%;
+// background-attachment:fixed
+// }
+// `
 const SectionTitle = styled.section`
 color: azure;
 font-size: 30px;
@@ -54,7 +52,7 @@ const DashboardPage = () => {
       <Main>
         <SectionTitle>PRODUKTY</SectionTitle>
         <SectionProducts>
-          <Product/>
+          <ProductsCard/>
         </SectionProducts>
       </Main>
       <section>

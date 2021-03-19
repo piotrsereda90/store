@@ -3,6 +3,7 @@ import SecureRoute from './components/SecureRoute';
 import AdminPage from './pages/AdminPage';
 import LoginPage from './pages/LoginPage';
 import Basket from './components/Basket'
+import Product from './components/ProductsCard/Product'
 import NoMatch from './components/NoMatch'
 import {
   Switch,
@@ -16,6 +17,8 @@ export function renderRoutes(){
       <SecureRoute exact path='/admin/dashboard' component={AdminPage}/>
       <Route exact path='/login' component={LoginPage}/>
       <Route path='/dashboard/basket' component={Basket}/>
+      <Route path='/products/:id' component={Product}/>
+      
       <Route path="*" component={NoMatch}/>
     </Switch>
    );
