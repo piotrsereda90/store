@@ -3,16 +3,37 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import {Provider} from 'react-redux';
+import{createStore ,applyMiddleware, compose} from 'redux';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; 
+import thunk from 'redux-thunk';
+import reducers from './rootReducers';
 
 // Start the mocking conditionally.
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./api/mocks/browser')
   worker.start()
 }
-
+// const persistConfig = {
+//   key: "root",
+//   storage
+// };
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const middleware =[thunk];
+// const persistedReducer = persistReducer(persistConfig, reducers);
+const store = createStore(
+  // persistedReducer,
+  // composeEnhancers(applyMiddleware(...middleware))
+  reducers, applyMiddleware(thunk)
+  );
+  // const persistor = persistStore(store);
+  console.log(store.getState())
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import withData from './withData'
 import Products from './Products'
 
 
@@ -10,13 +9,12 @@ const ProductsContainer = styled.div`
   justify-content: space-evenly;
   flex-wrap:wrap;
   `
-const ProductsCard = (props) => {
+const ProductsCard = () => {
 
-  console.log(props.apiData&&props.apiData)
   return (
     <ProductsContainer>
-     <Products apiData={props.apiData}/>
+     <Products/>
    </ProductsContainer>
    );
 }
-export default withData(ProductsCard);
+export default ProductsCard;

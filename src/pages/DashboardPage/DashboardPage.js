@@ -19,10 +19,10 @@ min-height: 100vh;
 `
 const SectionSideBar = styled.section`
 width: 15vw;
-border-top:none;
+
 `
 const SectionProducts = styled.section`
-// width: calc(80vw + 200px);
+
 `
 // const SectionBackground = styled.div`
 // background-image:url(${background});
