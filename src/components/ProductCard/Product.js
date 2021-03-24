@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {connect} from 'react-redux'
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faReply} from '@fortawesome/free-solid-svg-icons'
 
 const ProductContainer = styled.div`
 display:flex;
@@ -14,6 +16,7 @@ min-height:calc(100vh - 90px);
 const ProductPicture = styled.div`
 display:flex;
 width: 50%;
+position:relative;
 justify-content:center;
 align-items:center;
 overflow:hidden;
@@ -62,16 +65,26 @@ span{
   line-height:3;
 }
 `
+const style={
+  color:'azure',
+  fontSize:30,
+  position:'absolute',
+  top:20,
+  left:20
+}
+
+const arrowLeft =<FontAwesomeIcon icon={faReply}/>
+
 
 const Product = ({products}) => {
 
-  const [orderAmount, setOrderAmount] = useState()
-
   const {id} = useParams()
   const filterProduct = products.filter(product => product.id === id)
-  const product = filterProduct.map(product => (
+  
+  const product = filterProduct.map((product, key) => (
    <>
-   <ProductPicture>
+   <ProductPicture key={`product${key}`}>
+       <li><Link to='/'><span style={style}>{arrowLeft}</span> </Link></li>
      <div>
       <img src={product.img} alt={product.name}/>
     </div>

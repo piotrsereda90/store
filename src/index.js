@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {Provider} from 'react-redux';
-import{createStore ,applyMiddleware, compose} from 'redux';
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; 
+import{createStore ,applyMiddleware} from 'redux';
+// import { persistStore, persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage"; 
 import thunk from 'redux-thunk';
 import reducers from './rootReducers';
 

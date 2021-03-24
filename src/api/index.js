@@ -23,5 +23,8 @@ const api = {
   products(){
     return axiosInstance.get('/products');
   },
+  categories(){
+    return axiosInstance.get('/categories');
+  }
 }
 export default api;

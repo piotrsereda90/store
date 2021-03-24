@@ -2,8 +2,9 @@ import React from 'react';
 
 import{connect} from 'react-redux';
 import styled from 'styled-components';
-import {fetchProducts} from './containers/redux/reducer_products'
+import {fetchProducts} from './containers/redux/reducer_products';
 import{Link} from 'react-router-dom';
+import  filterCategories from '../SideBar/FilterCategories';
 
 const ProductContainer = styled.div`
 display:flex;
@@ -36,35 +37,34 @@ span{
   color:azure;
 }
 `
-
 const Products = ({ products,fetchProducts,isLoading}) => {
-    
-   isLoading&&fetchProducts()
-   const product = products.length&&products.map(item =>
 
-   <ProductContainer
+  isLoading&&fetchProducts()
+
+  const product = products.length&&products.map(item =>
+    <ProductContainer
       key={item.id}
-   >
-    <ul>
-      <li>
-        <Link to={`/product/${item.id}`}>
-          <span>{item.name}</span>
-          <img  src={item.img} alt={item.name}/>
-        </Link>
-      </li>
-    </ul>
-
+    >
+      <ul>
+        <li>
+          <Link to={`/product/${item.id}`}>
+            <span>{item.name}</span>
+            <img  src={item.img} alt={item.name}/>
+          </Link>
+        </li>
+      </ul>
    </ProductContainer>
   );
   return (
-  <>
-    {product}
-  </>
+    <>
+      {product}
+    </>
    );
-}
+  }
+
 const mapStateToProps = (state) => ({
-products: state.products.products,
-isLoading: state.products.isLoading
+  products: filterCategories(state.filter,state.products.products),
+  isLoading: state.products.isLoading
 })
 const mapDispatchToProps = (dispatch) => ({
   fetchProducts: () => dispatch(fetchProducts())

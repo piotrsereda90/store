@@ -31,7 +31,7 @@ const fetchSucceeded = (data) => ({
     };
   };
 
-  export default (state=INITIAL_STATE, action) => {
+   const reducerProducts= (state=INITIAL_STATE, action) => {
     switch(action.type){
       case FETCH_PRODUCTS_REQUESTED:
         return{
@@ -46,6 +46,13 @@ const fetchSucceeded = (data) => ({
             isError:false,
             products: action.payload
           }
+        case FETCH_PRODUCTS_FAILED: 
+        return{
+          ...state,
+          isLoading:false,
+          isError:true
+        }
         default: return state
     }
   }
+  export default reducerProducts

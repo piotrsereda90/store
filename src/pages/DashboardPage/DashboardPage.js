@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import styled from 'styled-components'
-import Header from '../../components/Header'
-import  SideBar from '../../components/SideBar'
-import  ProductsCard from '../../components/ProductsCard'
-import  RecommendedProduct from '../../components/RecommendedProduct'
-import  Footer from '../../components/Footer'
+import styled from 'styled-components';
+import Header from '../../components/Header';
+import  SideBar from '../../components/SideBar';
+import  ProductsCard from '../../components/ProductsCard';
+import  RecommendedProduct from '../../components/RecommendedProduct';
+import  Footer from '../../components/Footer';
+
 
 const Main = styled.main`
 display:flex;
@@ -47,7 +48,7 @@ const DashboardPage = () => {
       </nav>
       {/* <SectionBackground></SectionBackground> */}
         <SectionSideBar>
-          <SideBar/>
+            <SideBar/>
         </SectionSideBar>
       <Main>
         <SectionTitle>PRODUKTY</SectionTitle>

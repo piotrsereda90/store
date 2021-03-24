@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import styled from 'styled-components'
-import{
-  Link
-} from 'react-router-dom'
+import styled from 'styled-components';
+import {connect} from 'react-redux';
+import {fetchCategories} from './containers/redux/reducer_categories';
+import FilterButton from './FilterButton';
 
 const Aside = styled.aside`
 background-color:#282C34;
@@ -13,21 +13,55 @@ left:0;
 height:800px;
 width: 200px;
 `
+const ButtonContainer  = styled.div`
+display:flex;
+flex-direction:column;
+padding: 20px 0 10px 20px;
+position:relative;
+overflow:hidden;
+margin-top: 20px;
+button{
+  padding:  30px 15px 0 15px ;
+  color:azure;
+  font-size:16px;
+  text-transform:uppercase;
+  background-color:transparent;
+  text-align:left;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: .2s;
+&:focus {
+  outline: none;
+  border-bottom: 3px solid #2f3e93;
+}
+&:hover{
+  border-bottom: 3px solid #2f3e93;
+  cursor:pointer;
+ }
 
-const SideBar = () => {
+`
+const SideBar = ({fetchCategories, isLoading, categories}) => {
+
+  isLoading&&fetchCategories()
+
+  const category = categories.map((item, key)=>(
+    <FilterButton  key={`category${key}`} filter={item.category}>{item.name}</FilterButton>
+  ))
+
+
   return (
      <Aside>
-       <ul>
-         <li><Link to=''>broń długa</Link></li>
-         <li><Link to=''>broń krótka</Link></li>
-         <li><Link to=''>broń myśliwska</Link></li>
-         <li><Link to=''>broń maszynowa</Link></li>
-         <li><Link to=''>broń kolekcjonerska</Link></li>
-         <li><Link to=''>wiatrówki</Link></li>
-         <li><Link to=''>noże</Link></li>
-       </ul>
+       <ButtonContainer>
+         {category}
+       </ButtonContainer>
      </Aside>
      );
 }
- 
-export default SideBar;
+ const mapStateToProps = (state) => ({
+   categories: state.categories.categories,
+   isLoading : state.categories.isLoading
+ });
+ const mapDispatchToProps = (dispatch) => ({
+   fetchCategories: () => dispatch(fetchCategories())
+ });
+export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
