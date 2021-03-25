@@ -14,7 +14,7 @@ flex-direction:column;
 background:#0f1214;
 margin-left:200px;
 margin-top: 90px;
-min-height: 100vh;
+min-height: calc(100vh - 90px);
 
 
 `

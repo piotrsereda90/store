@@ -28,6 +28,11 @@ img{
   display:block;
   width: 100%;
 }
+// ul{
+//   margin:0;
+//   padding:0;
+//   list-style:none;
+// }
 `
 const ProductDescription = styled.div`
 display:flex;
@@ -82,39 +87,40 @@ const Product = ({products}) => {
   const filterProduct = products.filter(product => product.id === id)
   
   const product = filterProduct.map((product, key) => (
-   <>
-   <ProductPicture key={`product${key}`}>
-       <li><Link to='/'><span style={style}>{arrowLeft}</span> </Link></li>
-     <div>
-      <img src={product.img} alt={product.name}/>
-    </div>
-  </ProductPicture>
-  <ProductDescription>
-    <div>
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>cena 450 zł</p>
-    </div>
-    <OrderContainer>
-      <button>-</button>
-      <span>0</span>
-      <button>+</button>
-      <button>do koszyka</button>
-    </OrderContainer>
-  </ProductDescription>
-  </>
+    <ProductContainer  key={`product${key}`}>
+      <ProductPicture >
+        <li><Link to='/'><span style={style}>{arrowLeft}</span> </Link></li>
+        <div>
+         <img src={product.img} alt={product.name}/>
+        </div>
+      </ProductPicture>
+      <ProductDescription>
+        <div>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
+          <p>cena 450 zł</p>
+        </div>
+      <OrderContainer>
+        <button>-</button>
+        <span>0</span>
+        <button>+</button>
+        <button>do koszyka</button>
+      </OrderContainer>
+      </ProductDescription>
+    </ProductContainer>
 
-  )) 
+
+  ))
 
   return (
-    <ProductContainer>
+    <>
      {product}
-    </ProductContainer>
+    </>
     );
 }
 
 const mapStateToProps = (state) => ({
 products: state.products.products
 })
- 
+
 export default connect(mapStateToProps, null)(Product);

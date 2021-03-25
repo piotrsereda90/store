@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 import{connect} from 'react-redux';
 import styled from 'styled-components';
 import {fetchProducts} from './containers/redux/reducer_products';
 import{Link} from 'react-router-dom';
 import  filterCategories from '../SideBar/FilterCategories';
+import Pagination from './Pagination';
 
 const ProductContainer = styled.div`
 display:flex;
@@ -39,9 +40,20 @@ span{
 `
 const Products = ({ products,fetchProducts,isLoading}) => {
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] =useState(12)
+
   isLoading&&fetchProducts()
 
-  const product = products.length&&products.map(item =>
+  //get current posts
+  const indexOfLastProduct = productsPerPage*currentPage;
+  const indexOfFistProduct =  indexOfLastProduct - productsPerPage;
+  const currentPosts = products.slice(indexOfFistProduct, indexOfLastProduct)
+
+ // current page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+  const product = currentPosts.map(item =>
     <ProductContainer
       key={item.id}
     >
@@ -55,19 +67,21 @@ const Products = ({ products,fetchProducts,isLoading}) => {
       </ul>
    </ProductContainer>
   );
+  
   return (
     <>
       {product}
-    </>
+      <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
+      </>
    );
   }
 
-const mapStateToProps = (state) => ({
-  products: filterCategories(state.filter,state.products.products),
-  isLoading: state.products.isLoading
+  const mapStateToProps = (state) => ({
+    products: filterCategories(state.filter,state.products.products),
+    isLoading: state.products.isLoading
 })
-const mapDispatchToProps = (dispatch) => ({
-  fetchProducts: () => dispatch(fetchProducts())
+  const mapDispatchToProps = (dispatch) => ({
+    fetchProducts: () => dispatch(fetchProducts())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
