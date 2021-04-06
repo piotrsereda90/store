@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {Provider} from 'react-redux';
-import{createStore ,applyMiddleware} from 'redux';
-// import { persistStore, persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage"; 
+import{createStore ,applyMiddleware,compose} from 'redux';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; 
 import thunk from 'redux-thunk';
 import reducers from './rootReducers';
 
@@ -15,17 +15,17 @@ if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./api/mocks/browser')
   worker.start()
 }
-// const persistConfig = {
-//   key: "root",
-//   storage
-// };
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const middleware =[thunk];
-// const persistedReducer = persistReducer(persistConfig, reducers);
+const persistConfig = {
+  key: "root",
+  storage
+};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware =[thunk];
+const persistedReducer = persistReducer(persistConfig, reducers);
 const store = createStore(
-  // persistedReducer,
-  // composeEnhancers(applyMiddleware(...middleware))
-  reducers, applyMiddleware(thunk)
+  persistedReducer,
+  composeEnhancers(applyMiddleware(...middleware))
+  // reducers, applyMiddleware(thunk)
   );
   // const persistor = persistStore(store);
   console.log(store.getState())

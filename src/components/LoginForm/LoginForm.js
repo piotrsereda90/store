@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 
-import api from '../../api/'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import api from '../../api/';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useFormik  } from 'formik';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -124,8 +124,7 @@ const validationSchema = yup.object().shape({
 const LoginForm = () => {
   let history = useHistory()
   const [loginError, setLoginError]= useState(false)
-  // const token = uuidv4();
-  // console.log(token)
+
 
  const formik = useFormik({
    initialValues:{

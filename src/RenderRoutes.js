@@ -4,6 +4,7 @@ import AdminPage from './pages/AdminPage';
 import LoginPage from './pages/LoginPage';
 import Basket from './components/Basket';
 import ProductCard from './components/ProductCard';
+import OrderSummary from './components/OrderSummary';
 import NoMatch from './components/NoMatch';
 import {
   Switch,
@@ -18,6 +19,7 @@ export function renderRoutes(){
       <Route exact path='/login' component={LoginPage}/>
       <Route path='/dashboard/basket' component={Basket}/>
       <Route path='/product/:id' component={ProductCard}/>
+      <Route path='/order/summary/' component={OrderSummary}/>
       
       <Route path="*" component={NoMatch}/>
     </Switch>

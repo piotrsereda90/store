@@ -1,4 +1,6 @@
 import React,{useState, useEffect } from 'react'
+
+import{connect}from 'react-redux';
 import {
   Link,
   useHistory
@@ -120,7 +122,8 @@ const picture = {
  shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>
 };
 
-function Header() {
+function Header({orderList}) {
+
   const [loginStatus, setLoginStatus]= useState(false);
   const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false);
 
@@ -153,7 +156,14 @@ function Header() {
           {/* <Search/> */}
         </SearchWrapper>
         <ShoppingBag>
-          <li><ShoppingBagLi to='/dashboard/basket'>{picture.shoppingBag}<OrderAmount>0</OrderAmount></ShoppingBagLi></li>
+          <li>
+            <ShoppingBagLi to='/dashboard/basket'>
+              {picture.shoppingBag}
+              <OrderAmount>
+                {orderList.length}
+              </OrderAmount>
+            </ShoppingBagLi>
+          </li>
         </ShoppingBag>
         <User
           onClick={handelUserMenu}>
@@ -171,4 +181,8 @@ function Header() {
 
     </TopBar>);
 }
-export default Header;
+
+const mapStateToProps = (state) => ({
+  orderList: state.order
+})
+export default connect(mapStateToProps, null) (Header);

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 const PaginationContainer = styled.div`
 width: 100%;
-padding: 10px 10px 20px 10px;
+padding: 10px 10px 10px 10px;
 margin-right: 30px;
+align-self:flex-end;
 ul{
   display:flex;
   justify-content:flex-end;
@@ -30,39 +31,40 @@ ul{
       transition: .2s;
     }
   }
-  li:hover{
+  li:hover {
     cursor:pointer;
     &:before{
       right:0;
-      ::focus{
-        color: red;
-      }
     }
   }
 }
 `
 
 const Pagination = ({productsPerPage, totalProducts, paginate}) => {
-  
+
   const pageNumber=[];
 
   for(let i =1; i<= Math.ceil(totalProducts / productsPerPage); i++){
     pageNumber.push(i);
-  } 
+  }
 
   const pagination = pageNumber.map(number => (
-    <li key={`pagination ${number}`} onClick={ ()=> paginate(number)}>
+    <li
+      key={`pagination ${number}`}
+      onClick={
+        ()=> paginate(number)
+      }
+      >
       {number}
     </li>
-
   ))
   return (
-      <PaginationContainer>
-        <ul>
+    <PaginationContainer>
+      <ul>
           {pagination}
-        </ul>
-      </PaginationContainer>
+      </ul>
+    </PaginationContainer>
    );
 }
- 
+
 export default Pagination;

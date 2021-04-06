@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Header from '../../components/Header';
 import  SideBar from '../../components/SideBar';
 import  ProductsCard from '../../components/ProductsCard';
-import  RecommendedProduct from '../../components/RecommendedProduct';
+import  RecommendedProducts from '../../components/RecommendedProducts';
 import  Footer from '../../components/Footer';
 
 
@@ -57,7 +57,7 @@ const DashboardPage = () => {
         </SectionProducts>
       </Main>
       <section>
-        <RecommendedProduct/>
+        <RecommendedProducts/>
       </section>
       <footer><Footer/></footer>
     </>

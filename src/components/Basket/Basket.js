@@ -1,11 +1,154 @@
-import React from 'react'
+import React from 'react';
+import Header from '../Header';
+import {connect} from 'react-redux';
+import styled from 'styled-components';
+import {Link }from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faReply } from '@fortawesome/free-solid-svg-icons';
+import {addProductAmount,removeProductAmount, removeProductFromBasket } from '../ProductCard/containers/redux/reducer_order';
 
-const Basket = () => {
+const BasketContainer = styled.div`
+display:flex;
+flex-wrap:wrap;
+color:azure;
+margin-top: 90px;
+min-height: calc(100vh - 90px);
+background-color: #0F1214;
+a{
+    text-decoration:none;
+    padding: 10px 20px;
+    height: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+   
+}
+span{
+  color:azure;
+  padding: 10px 20px;
+}
+`
+const OrderWrapper = styled.div`
+display:flex;
+flex-wrap:wrap;
+width: 100%;
+margin-left: 70px;
+padding: 20px;
+max-height: 150px;
+`
+const PictureWrapper = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+width: 150px;
+margin-right: 50px;
+img{
+  display:block;
+  width: 100%;
+  
+}
+`
+// const IconBasket = styled.div`
+// font-size: 100px;
+// color:azure;
+// width: 100%;
+// `
+const OrderListContainer = styled.div`
+display:flex;
+width: 100%;
+flex-wrap:wrap;
+margin-top: 100px;
+`
+const BackToShop = styled.div`
+display:flex;
+position:fixed;
+li{
+  list-style-type:none;
+}
+`
+const ButtonWrapper  = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+
+button{
+display:block;
+padding: 5px 15px;
+background-color:#2f3e93;
+border: none;
+border-radius: 10px;
+color: azure;
+outline:none;
+}
+span{
+display:block;
+padding:0 10px;
+}
+`
+const ButtonRemove = styled.button`
+margin-left: 15px;`
+
+// const iconBasket =<FontAwesomeIcon icon={faShoppingBasket}/>
+const arrowLeft = <FontAwesomeIcon icon={faReply}/>
+const style={
+  display:'block',
+  color:'azure',
+  fontSize:30,
+  padding:30,
+}
+const Basket = ({orderList, addProductAmount, removeProductAmount, removeProductFromBasket}) => {
+  const order =  orderList.map((item, key) => (
+
+  <OrderWrapper key={`${item.id + key}`}>
+    <PictureWrapper>
+      <img src={item.img} alt="product"/>
+    </PictureWrapper>
+    <ButtonWrapper>
+      <button
+        disabled={item.amount === 0
+          ? true
+          : false }
+        onClick={()=>removeProductAmount(item.id)}>
+        -
+        </button>
+      <span>{item.amount}</span>
+      <button
+        onClick={() =>addProductAmount(item.id)}>
+        +
+      </button>
+      <ButtonRemove
+        onClick={()=>removeProductFromBasket(item.id)}>
+         usuń produkt z koszyka
+      </ButtonRemove>
+    </ButtonWrapper>
+  </OrderWrapper>
+  ))
+  
   return (
-    <div>
-      Twój koszyk jest pusty
-    </div>
+    <>
+      <Header/>
+      <BasketContainer>
+        <BackToShop>
+          <li><Link to='/'><span style={style}>{arrowLeft}</span></Link></li>
+        </BackToShop>
+        {/* <IconBasket>{iconBasket}</IconBasket> */}
+        <OrderListContainer >
+          {order}
+       </OrderListContainer>
+        {orderList.length 
+        ? <Link to='/order/summary'> <span>przejdz do realizacji zamówienia </span></Link>
+        : null}
+      </BasketContainer>
+   </>
    );
 }
+const mapStateToProps = (state) => ({
+  orderList: state.order
+})
 
-export default Basket;
+const mapDispatchToProps = (dispatch) => ({
+  addProductAmount: (id) => dispatch(addProductAmount(id)),
+  removeProductAmount: (id) => dispatch(removeProductAmount(id)),
+  removeProductFromBasket: (id) => dispatch(removeProductFromBasket(id))
+})
+
+export default connect(mapStateToProps ,mapDispatchToProps)(Basket);

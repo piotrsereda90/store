@@ -24,7 +24,7 @@ a{
   }
 }
 img{
-  height: 100px;
+  height: 70px;
   margin-top: 20px;
   &:hover{
     transform: scale(1.4);
@@ -38,10 +38,12 @@ span{
   color:azure;
 }
 `
+
 const Products = ({ products,fetchProducts,isLoading}) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] =useState(12)
+
 
   isLoading&&fetchProducts()
 
@@ -49,6 +51,7 @@ const Products = ({ products,fetchProducts,isLoading}) => {
   const indexOfLastProduct = productsPerPage*currentPage;
   const indexOfFistProduct =  indexOfLastProduct - productsPerPage;
   const currentPosts = products.slice(indexOfFistProduct, indexOfLastProduct)
+
 
  // current page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
@@ -72,13 +75,14 @@ const Products = ({ products,fetchProducts,isLoading}) => {
     <>
       {product}
       <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
-      </>
+    </>
    );
   }
 
   const mapStateToProps = (state) => ({
     products: filterCategories(state.filter,state.products.products),
-    isLoading: state.products.isLoading
+    isLoading: state.products.isLoading,
+    paginationNumberSide: state.pagination,
 })
   const mapDispatchToProps = (dispatch) => ({
     fetchProducts: () => dispatch(fetchProducts())

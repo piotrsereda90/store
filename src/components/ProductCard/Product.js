@@ -1,17 +1,20 @@
 import React from 'react';
 
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import OrderProduct from './OrderProduct';
 import {useParams, Link} from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faReply} from '@fortawesome/free-solid-svg-icons'
 
-const ProductContainer = styled.div`
+const Container = styled.div`
 display:flex;
 background:#0f1214;
-margin-left:200px;
 margin-top: 90px;
 min-height:calc(100vh - 90px);
+`
+const ProductWrapper = styled.div`
+display:flex;
 `
 const ProductPicture = styled.div`
 display:flex;
@@ -28,11 +31,6 @@ img{
   display:block;
   width: 100%;
 }
-// ul{
-//   margin:0;
-//   padding:0;
-//   list-style:none;
-// }
 `
 const ProductDescription = styled.div`
 display:flex;
@@ -41,8 +39,12 @@ width: 50%;
 align-items:center;
 div{
   color:azure;
-  width:70%;
   padding:0 40px;
+  div{
+    border-top: 1px solid azure;
+    padding-top:10px;
+    margin-top: 20px;
+  }
 }
 h2{
   text-align:center;
@@ -51,30 +53,17 @@ h2{
   text-transform:uppercase;
 }
 `
-const OrderContainer = styled.div`
+const ProductDescriptionContainer =  styled.div`
 display:flex;
-margin-top: 50px;
-text-align:center;
-button{
-  padding: 10px 20px;
-  margin: 0 20px 0 20px;
-  background-color:#2f3e93;
-  font-size: 20px;
-  border: 2px solid #2f3e93;
-  border-radius:10%;
-  color:azure;
-  outline:none;
-}
-span{
-  display:block;
-  line-height:3;
-}
+align-items:center;
+flex-direction: column;
+width: 50%;
 `
 const style={
   color:'azure',
   fontSize:30,
   position:'absolute',
-  top:20,
+  top:30,
   left:20
 }
 
@@ -84,38 +73,39 @@ const arrowLeft =<FontAwesomeIcon icon={faReply}/>
 const Product = ({products}) => {
 
   const {id} = useParams()
+
   const filterProduct = products.filter(product => product.id === id)
-  
+
   const product = filterProduct.map((product, key) => (
-    <ProductContainer  key={`product${key}`}>
+    <ProductWrapper  key={`product${key}`}>
       <ProductPicture >
-        <li><Link to='/'><span style={style}>{arrowLeft}</span> </Link></li>
+        <li>
+          <Link to='/'>
+            <span style={style}>{arrowLeft}</span> 
+          </Link>
+        </li>
         <div>
          <img src={product.img} alt={product.name}/>
         </div>
       </ProductPicture>
-      <ProductDescription>
-        <div>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>cena 450 zł</p>
-        </div>
-      <OrderContainer>
-        <button>-</button>
-        <span>0</span>
-        <button>+</button>
-        <button>do koszyka</button>
-      </OrderContainer>
-      </ProductDescription>
-    </ProductContainer>
-
-
+      <ProductDescriptionContainer>
+        <ProductDescription>
+          <div>
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
+            <div></div>
+            <p>cena: {product.price} zł</p>
+          </div>
+        </ProductDescription>
+        <OrderProduct product={product}/>
+      </ProductDescriptionContainer>
+    </ProductWrapper>
   ))
 
   return (
-    <>
+    <Container>
      {product}
-    </>
+    </Container>
     );
 }
 

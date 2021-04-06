@@ -14,9 +14,9 @@ const api = {
    login(email, password){
     return  axiosInstance.post('/login', {email, password});
   },
-  me(){
-    return axiosInstance.get('/me');
-  },
+  // me(){
+  //   return axiosInstance.get('/me');
+  // },
   logout(){
     return axiosInstance.post('/logout');
   },
@@ -25,6 +25,9 @@ const api = {
   },
   categories(){
     return axiosInstance.get('/categories');
+  },
+  orders(order){
+    return axiosInstance.post('/orders')
   }
 }
 export default api;
