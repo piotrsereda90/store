@@ -3,10 +3,6 @@ const ADD_PRODUCT_ITEM = 'ADD_PRODUCT_ITEM'
 const REMOVE_PRODUCT_ITEM = ' REMOVE_PRODUCT_ITEM'
 const REMOVE_PRODUCT_FROM_BASKET = 'REMOVE_PRODUCT_FROM_BASKET'
 
-// const INITIAL_STATE = {
-//   orderProduct:[],
-//   productAmount: 0
-// }
 export const addProductToBasket = (payload) => ({
   type: ADD_PRODUCT_TO_BASKET,
   payload,
@@ -26,7 +22,6 @@ export const removeProductFromBasket = (id) => ({
 })
 
 const orderReducer = (state=[], action) => {
-  console.log( state)
   switch(action.type){
     case ADD_PRODUCT_TO_BASKET:
       const {id,name, category,img, description,amount} = action.payload

@@ -15,6 +15,7 @@ display:flex;
 position:fixed;
 top:0;
 left:0;
+z-index:3;
 width: 100vw;
 padding: 10px;
 background-color:#282C34;
@@ -171,7 +172,7 @@ function Header({orderList}) {
           {UserMenuIsOpen
           ?<UserMenu>
             <UserMenuUl>
-              <UserMenuLi><UserMenuLink to='admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
+              <UserMenuLi><UserMenuLink to='/admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
               <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
             </UserMenuUl>
           </UserMenu>

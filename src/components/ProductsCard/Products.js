@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import{connect} from 'react-redux';
 import styled from 'styled-components';
@@ -39,13 +39,16 @@ span{
 }
 `
 
-const Products = ({ products,fetchProducts,isLoading}) => {
+const Products = ({ products,fetchProducts}) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] =useState(12)
 
 
-  isLoading&&fetchProducts()
+  useEffect(()=> {
+    fetchProducts()
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   //get current posts
   const indexOfLastProduct = productsPerPage*currentPage;
@@ -70,7 +73,7 @@ const Products = ({ products,fetchProducts,isLoading}) => {
       </ul>
    </ProductContainer>
   );
-  
+
   return (
     <>
       {product}
@@ -81,7 +84,6 @@ const Products = ({ products,fetchProducts,isLoading}) => {
 
   const mapStateToProps = (state) => ({
     products: filterCategories(state.filter,state.products.products),
-    isLoading: state.products.isLoading,
     paginationNumberSide: state.pagination,
 })
   const mapDispatchToProps = (dispatch) => ({

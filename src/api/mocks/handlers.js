@@ -51,12 +51,11 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        
+
       })
     )
   }),
   rest.get('/categories', (req, res, ctx) => {
-    // const { username } = req.body
     return res(
       ctx.status(200),
       ctx.json({
@@ -98,6 +97,134 @@ export const handlers = [
       })
     )
   }),
+  rest.get('/recommendedProducts', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        data:[
+          {
+            id: `9bf6d375-9862-4f08-be7f-740bb36ff94c453`,
+            category:'gun',
+            name:'karabin mg445',
+            img: karabin,
+            description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 45,
+          },
+          {
+            id: `99b9d759-6ccf-4dd2-a509-e7a949c7a16a78`,
+            category:'knife',
+            name: 'nóż siekacz',
+            img:knife,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 450,
+          },
+          {
+            id:`f3ce4b78-c509-4d7c-bac8-d2385f5ac8a567`,
+            category: 'ammunition',
+            name: 'kule przelotowe',
+            img:ammunition,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 550,
+          },
+          {
+            id:`e97aee81-fe74-4fea-be88-895729f6aabd87`,
+            category:'clothing',
+            name: 'kurtka moro',
+            img: jacket,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 200,
+          },
+          {
+          id: `99b9d759-6ccf-4dd2-a509-e7a949c7a16b54`,
+          category:'knife',
+          name: 'bojowy',
+          img:bojowy,
+          description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+          amount:1,
+          price: 480,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224g7886`,
+            category:'clothing',
+            name: 'kamizelka',
+            img:kamizelka,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 450,
+          },
+        
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224g8675`,
+            category:'gun',
+            name: 'micro_uzi_mac',
+            img:micro_uzi_mac,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 450,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224h45646`,
+            category:'clothing',
+            name: 'kurtka komandos',
+            img:kurtka2,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 450,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224h456461`,
+            category:'gun',
+            name: 'snajper talib',
+            img:snajper,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 450,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224b22`,
+            category:'gun',
+            name: 'Colt',
+            img:colt,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 480,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224c33`,
+            category:'gun',
+            name: 'MP5',
+            img:MP5,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 750,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224b55`,
+            category:'ammunition',
+            name: 'kula',
+            img:kula,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 950,
+          },
+          {
+            id:`486e76c6-cfb5-45db-b5c7-3830d3ec224d44`,
+            category:'gun',
+            name: 'karabin_maszynowy',
+            img:karabin_maszynowy,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor officia, et excepturi ratione libero voluptatibus sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.Sed impedit maxime, illo nam corporis accusantium unde natus voluptatum quam consequuntur molestiae? Quisquam, voluptates.',
+            amount:1,
+            price: 11200,
+          },
+
+        ]
+      })
+    )
+  }),
   rest.get('/products',(req, res,ctx)=> {
     return res(
       ctx.status(200),
@@ -130,7 +257,6 @@ export const handlers = [
                     amount:1,
                     price: 550,
                   },
-                  
                   {
                     id:`e97aee81-fe74-4fea-be88-895729f6aabd87`,
                     category:'clothing',

@@ -62,8 +62,8 @@ width: 50%;
 const style={
   color:'azure',
   fontSize:30,
-  position:'absolute',
-  top:30,
+  position:'fixed',
+  top:120,
   left:20
 }
 
