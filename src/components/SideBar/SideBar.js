@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 import styled from 'styled-components';
 import {connect} from 'react-redux';
@@ -40,9 +40,14 @@ button{
  }
 
 `
-const SideBar = ({fetchCategories, isLoading, categories}) => {
+const SideBar = ({fetchCategories, categories}) => {
 
-  isLoading&&fetchCategories()
+ 
+  useEffect(() =>{
+    fetchCategories()
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
 
   const category = categories.map((item, key)=>(
     <FilterButton  key={`category${key}`} filter={item.category}>{item.name}</FilterButton>
@@ -59,7 +64,6 @@ const SideBar = ({fetchCategories, isLoading, categories}) => {
 }
  const mapStateToProps = (state) => ({
    categories: state.categories.categories,
-   isLoading : state.categories.isLoading
  });
  const mapDispatchToProps = (dispatch) => ({
    fetchCategories: () => dispatch(fetchCategories())

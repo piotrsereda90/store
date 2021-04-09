@@ -44,7 +44,6 @@ span{
 const ButtonContainer = styled.div`
 `
 const OrderProduct = ({product, addProductToBasket, orderProduct}) => {
-console.log(orderProduct)
   const [showInfo, setShowInfo]=useState(false);
 
   const showInfoProductExist = () => (

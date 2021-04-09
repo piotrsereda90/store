@@ -1,11 +1,6 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { fa} from '@fortawesome/free-solid-svg-icons';
-
-// const facebook =<FontAwesomeIcon icon={fafacebook}/>
-
 
 const FooterContainer = styled.footer`
 display:flex;
@@ -86,9 +81,13 @@ ul{
 }
 `
 const Footer = () => {
+  
+  const handelClick = (e) => {
+    e.preventDefault()
+  }
   return (
     <FooterContainer>
-      <h1>FOOTER</h1>
+      <h1>STOPKA</h1>
        <FirstSection>
         <div style={{paddingLeft: 30}}>
           <h4>POMOC</h4>
@@ -121,7 +120,7 @@ const Footer = () => {
         <h4>NEWSLETTER</h4>
           <form action="">
             <input type="text" placeholder='Twój e-mail'/>
-            <button>ZAPISZ</button>
+            <button onClick={handelClick}>ZAPISZ</button>
             <p>Zapisując się na nasz newsletter akceptujesz</p>
             <p>Regulamin i Politykę Prywatności</p>
           </form>
@@ -151,7 +150,7 @@ const Footer = () => {
            </ul>
          </div>
          <div>
-           <h4></h4>
+           <h4>ZAINSPIRUJ SIĘ NA</h4>
            <div>
              <div></div>
              <div></div>
