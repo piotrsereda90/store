@@ -55,29 +55,7 @@ cursor:pointer;
   transition: .2s;
 }
 `
-const ShoppingBag = styled.div`
-width: 50px;
-height:50px;
-line-height:1;
-font-size:40px;
-list-style-type:none;
-`
-const ShoppingBagLi = styled(Link)`
-color:azure;
-position:relative;
-&:hover{
-  color: #816952;
-  transition: .2s;
-}
-`
-const OrderAmount = styled.span`
-position:absolute;
-top:25px;
-left:14px;
-font-weight:900;
-font-size: 14px;
-color:#202528;
-`
+
 const UserMenu = styled.div`
 position:absolute;
 top:50px;
@@ -120,32 +98,11 @@ margin-right: 10px;
 `
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
- shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>
 };
 
-function Header({orderList}) {
+function Header() {
 
-  const [loginStatus, setLoginStatus]= useState(false);
-  const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false);
-
-  let history = useHistory()
-  let session = sessionStorage.getItem('accessToken')
-
-  const handelUserMenu = () =>  setUserMenuIsOpen(prevState => !prevState);
-
-  const loginLabel = loginStatus? 'Log out':'Log in';
-
-  const handelLogIn = () => {
-    loginStatus&&sessionStorage.removeItem('accessToken')
-    !loginStatus&& history.push('/login')
-  }
-
-  useEffect(()=>{
-    return session
-    ?setLoginStatus(true)
-    :setLoginStatus(false)
-
-    },[session]);
+ 
 
   return (
     <TopBar>
@@ -154,30 +111,7 @@ function Header({orderList}) {
       </Logo>
       <RightToolBar>
         <SearchWrapper>
-          
         </SearchWrapper>
-        <ShoppingBag>
-          <li>
-            <ShoppingBagLi to='/dashboard/basket'>
-              {picture.shoppingBag}
-              <OrderAmount>
-                {orderList.length}
-              </OrderAmount>
-            </ShoppingBagLi>
-          </li>
-        </ShoppingBag>
-        <User
-          onClick={handelUserMenu}>
-          <div>{picture.iconUser}</div>
-          {UserMenuIsOpen
-          ?<UserMenu>
-            <UserMenuUl>
-              <UserMenuLi><UserMenuLink to='/admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
-              <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
-            </UserMenuUl>
-          </UserMenu>
-          : null}
-        </User>
       </RightToolBar>
 
     </TopBar>);

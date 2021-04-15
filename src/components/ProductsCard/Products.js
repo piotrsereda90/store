@@ -44,7 +44,6 @@ const Products = ({ products,fetchProducts}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] =useState(12)
 
-
   useEffect(()=> {
     fetchProducts()
     //  eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,12 +55,12 @@ const Products = ({ products,fetchProducts}) => {
   const currentPosts = products.slice(indexOfFistProduct, indexOfLastProduct)
 
 
- // current page
+  // current page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   const product = currentPosts.map(item =>
     <ProductContainer
-      key={item.id}
+    key={item.id}
     >
       <ul>
         <li>
@@ -83,7 +82,7 @@ const Products = ({ products,fetchProducts}) => {
   }
 
   const mapStateToProps = (state) => ({
-    products: filterCategories(state.filter,state.products.products),
+    products:  filterCategories(state.filter,state.products.products),
     paginationNumberSide: state.pagination,
 })
   const mapDispatchToProps = (dispatch) => ({

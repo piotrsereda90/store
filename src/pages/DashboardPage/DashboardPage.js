@@ -15,25 +15,12 @@ background:#0f1214;
 margin-left:200px;
 margin-top: 90px;
 min-height: calc(100vh - 90px);
-
-
 `
 const SectionSideBar = styled.section`
 width: 15vw;
-
 `
 const SectionProducts = styled.section`
-
 `
-// const SectionBackground = styled.div`
-// background-image:url(${background});
-// width: 100%;
-// height: 70vh;
-// background-size: cover;
-// background-position:0% 70%;
-// background-attachment:fixed
-// }
-// `
 const SectionTitle = styled.section`
 color: azure;
 font-size: 30px;
@@ -46,7 +33,6 @@ const DashboardPage = () => {
       <nav>
        <Header/>
       </nav>
-      {/* <SectionBackground></SectionBackground> */}
         <SectionSideBar>
             <SideBar/>
         </SectionSideBar>
