@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import background from '../../assets/image/background_deer.jpg'
 
 const FooterContainer = styled.footer`
 display:flex;
@@ -8,7 +9,10 @@ flex-direction:column;
 padding-top: 30px;
 width: calc(100% - 200px);
 margin-left: 200px;
-background-color:#0f1214;
+background-image: url(${background});
+background-size:cover;
+background-position: 20% 10%;
+background-attachment:fixed;
 color:azure;
 text-align:center;
 h1{
@@ -80,7 +84,7 @@ ul{
 }
 `
 const Footer = () => {
-  
+
   const handelClick = (e) => {
     e.preventDefault()
   }
@@ -89,21 +93,21 @@ const Footer = () => {
       <h1>STOPKA</h1>
        <FirstSection>
         <div style={{paddingLeft: 30}}>
-          <h4>POMOC</h4>
+        <h4>OBSŁUGA SKLEPU GIWERA.PL</h4>
+            <ul>
+              <li>48 528 93 65</li>
+              <li>48 752 52 55</li>
+              <li>giwera@sklep.com</li>
+            </ul>
+        </div>
+        <div>
+        <h4>POMOC</h4>
             <ul>
               <li>Bezpieczne płatnośłci</li>
               <li>FAQ</li>
               <li>Koszty dostawy</li>
               <li>Reklamacje</li>
               <li></li>
-            </ul>
-        </div>
-        <div>
-        <h4>OBSŁUGA SKLEPU GIWERA.PL</h4>
-            <ul>
-              <li>48 528 93 65</li>
-              <li>48 752 52 55</li>
-              <li>giwera@sklep.com</li>
             </ul>
         </div>
         <div>

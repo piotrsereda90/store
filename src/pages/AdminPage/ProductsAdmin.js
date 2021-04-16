@@ -25,16 +25,63 @@ letter-spacing:2px;
 `
 const SectionTwo = styled.section`
 display:flex;
-justify-content:space-evenly;
-height: 200px;
 width: 100%;
+form{
+margin: 20px;
+input{
+  width: 400px;
+  padding: 0px 20px;
+  border-radius: 10px;
+  border:3px solid;
+  font-size: 20px;
+  min-height:54px;
+  &:hover {
+  cursor:pointer;
+  border: 3px solid #3f51b5;
+  }
+&:hover::-webkit-input-placeholder{
+  position:relative;
+  top: -15px;
+  transition: 0.2s ease-out;
+  font-size:10px;
+  color:#3f51b5;
+}
+&:focus {
+ border: 3px solid #3f51b5;
+ outline: none;
+ font-size:20px;
+ }
+&:focus::-webkit-input-placeholder{
+  position:relative;
+  top: -15px;
+  transition: 0.2s ease-out;
+  font-size:10px;
+  color:#3f51b5;
+}
+  }
+  select{
+    width: 300px;
+    padding: 0px 20px;
+    border-radius: 10px;
+    border:3px solid;
+    font-size: 20px;
+    min-height:54px;
+    outline:none;
+    &:hover {
+    cursor:pointer;
+    border: 3px solid #3f51b5;
+    }
+    margin-left: 20px;
+  }
+}
 `
 const SectionThree = styled.section`
 display:flex;
 flex-wrap:wrap;
+width: 100%;
+min-height: 100vh;
 margin-top: 25px;
 margin-bottom: 25px;
-width: 100%;
 justify-content:space-evenly;
 `
 const ButtonContainer = styled.div`
@@ -59,40 +106,85 @@ const PictureWrapper = styled.div`
 display:flex;
 align-items:center;
 justify-content:center;
-width:150px;
-height: 150px;
+width:200px;
+height: 140px;
+overflow:hidden;
 img{
-  height: 70px;
+  width: 120px;
   margin-top: 20px;
-  &:hover{
-    transform: scale(1.4);
-    overflow:hidden;
   }
+
 `
 const ProductContainer = styled.div`
 display:flex;
 width: 100%;
+height: 170px;
 align-items: center;
-padding-left: 100px;
+justify-content:center;
+text-align:center;
 color:azure;
 div{
+  display:flex;
+  // flex-direction:column;
   width:16%;
-  text-align:center;
+  height: 150px;
+  justify-content:center;
+  background-color: #282C34;
+ align-items:center;
+}
+button{
+  width: 50%;
+  padding: 8px 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  color: azure;
+  font-size: 16px;
+  outline:none;
+  background-color: #2f3e93;
+  &:hover{
+    background-color: #3f51b5;
+    transition: .5s;
+  }
+}
 }
 `
-const ProductsAdmin = ({productsList}) => {
+const ProductsAdmin = ({productsList, categories}) => {
 
-  const [Items = [...productsList], setItems] = useState([])
-  console.log(Items)
+  const [Items] = useState(productsList)
+  const [filterProducts, setFilterProducts] =useState(Items)
 
-  const products =  Items&&Items.map(product=>(
+  const handelChangeCategory = (e) => {
+    const selectCategory = e.target.value
+    let products = [...Items]
+    selectCategory === 'all' 
+    ? setFilterProducts(Items)
+    : products = products.filter(product => product.category === selectCategory)
+    setFilterProducts(products)
+  }
+ 
+  const handelChangeSearch = (e) => {
+    const searchText = e.target.value.toLowerCase()
+    let products = [...Items]
+    products = products.filter(product => product.name.toLowerCase().includes(searchText))
+    setFilterProducts(products)
+  }
+  const selectCategory = () => (
+    <select form="categories" id="" onChange={handelChangeCategory}>
+      {categories.map((category, key) => (
+        <option key={`category${key}`}value={category.category}>{category.category}</option>
+      ))}
+    </select>
+  )
+
+  const products =  filterProducts.map(product=>(
     <ProductContainer key={product.id}>
       <PictureWrapper>
         <img src={product.img} alt={product.name}/>
       </PictureWrapper>
       <div>{product.name}</div>
       <div>{product.price}</div>
-      <div>category</div>
+      <div>{product.category}</div>
       <div><button>edit</button></div>
       <div><button>delete</button></div>
     </ProductContainer>
@@ -107,8 +199,10 @@ const ProductsAdmin = ({productsList}) => {
         <ButtonContainer><button> + New Product</button></ButtonContainer>
       </SectionOne>
     <SectionTwo>
-        {/* <Search productsList={productsList}/> */}
-        fewfwef
+     <form id='categories' >
+       <input onChange={handelChangeSearch}type='text' placeholder='Search product' />
+      {selectCategory()}
+     </form>
       </SectionTwo>
       <SectionThree>
         {products}
@@ -119,7 +213,8 @@ const ProductsAdmin = ({productsList}) => {
 }
 
 const mapStateToProps = (state) => ({
-  productsList: state.products.products
+  productsList: state.products.products,
+  categories :state.categories.categories
 })
 
  
