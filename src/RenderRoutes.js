@@ -5,8 +5,8 @@ import LoginPage from './pages/LoginPage';
 import Basket from './components/Basket';
 import ProductCard from './components/ProductCard';
 import OrderSummary from './components/OrderSummary';
-import {ProductsAdmin, OrdersAdmin, InvoicesAdmin} from './pages/AdminPage';
-
+import { OrdersAdmin, InvoicesAdmin, AddProduct, UpdateProduct} from './pages/AdminPage';
+import {ProductsAdmin} from './pages/AdminPage';
 import NoMatch from './components/NoMatch';
 import {
   Switch,
@@ -21,6 +21,8 @@ export function renderRoutes(){
       <SecureRoute exact path='/admin/dashboard/products' component={ProductsAdmin}/>
       <SecureRoute exact path='/admin/dashboard/orders' component={OrdersAdmin}/>
       <SecureRoute exact path='/admin/dashboard/invoices' component={InvoicesAdmin}/>
+      <SecureRoute exact path='/admin/dashboard/products/addProduct' component={AddProduct}/>
+      <SecureRoute exact path='/admin/dashboard/products/updateProduct' component={UpdateProduct}/>
       <Route exact path='/login' component={LoginPage}/>
       <Route path='/dashboard/basket' component={Basket}/>
       <Route path='/product/:id' component={ProductCard}/>

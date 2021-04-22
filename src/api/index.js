@@ -24,10 +24,19 @@ const api = {
     return axiosInstance.get('/categories');
   },
   orders(order){
-    return axiosInstance.post('/orders')
+    return axiosInstance.post('/orders',{order});
   },
   recommendedProducts(){
     return axiosInstance.get('/recommendedProducts');
+  },
+  deleteProduct(id){
+    return axiosInstance.delete('/deleteProduct',{id});
+  },
+  updateProduct({product}){
+    return axiosInstance.put('/updateProduct',{product})
+  },
+  addProduct({product}){
+    return axiosInstance.post('/addProduct',{product})
   }
 
 }

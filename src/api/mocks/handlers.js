@@ -36,12 +36,9 @@ import vest from './img/vest/vest.png'
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
-    // const { username } = req.body
     return res(
       ctx.status(200),
       ctx.json({
-        // id: 'f79e82e8-c34a-4dc7-a49e-9fadc0979fda',
-        // username,
         email: 'babanarowerze5@gmail.com',
         password: 'jakiehaslo',
       })
@@ -49,10 +46,22 @@ export const handlers = [
   }),
   rest.post('/orders', (req, res,ctx) => {
     return res(
-      ctx.status(200),
-      ctx.json({
-
-      })
+      ctx.status(200)
+    )
+  }),
+  rest.delete('/deleteProduct',(req, res, ctx)=>{
+    return res(
+      ctx.status(200)
+    )
+  }),
+  rest.put('/updateProduct',(req, res,ctx) => {
+    return res(
+      ctx.statue(200)
+    )
+  }),
+  rest.post('/addProduct',(req, res,ctx)=> {
+    return res(
+      ctx.status(200)
     )
   }),
   rest.get('/categories', (req, res, ctx) => {
@@ -156,7 +165,6 @@ export const handlers = [
             amount:1,
             price: 450,
           },
-        
           {
             id:`486e76c6-cfb5-45db-b5c7-3830d3ec224g8675`,
             category:'gun',
@@ -465,7 +473,6 @@ export const handlers = [
                     amount:1,
                     price: 450,
                   },
-                
                   {
                     id:`486e76c6-cfb5-45db-b5c7-3830d3ec224g8675`,
                     category:'gun',

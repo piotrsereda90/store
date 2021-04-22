@@ -61,6 +61,8 @@ margin-top: 100px;
 const BackToShop = styled.div`
 display:flex;
 position:fixed;
+top:80px;
+left:0;
 li{
   list-style-type:none;
 }
