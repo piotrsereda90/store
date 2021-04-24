@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import api from '../../../api';
+import {fetchProducts} from '../../../components/ProductsCard/containers/redux/reducer_products';
 
 const Container = styled.div`
 width:calc(100% - 200px);
@@ -30,7 +31,7 @@ const SectionTwo = styled.section`
 display:flex;
 width: 100%;
 form{
-margin: 20px;
+margin: 20px 30px;
 input{
   width: 400px;
   padding: 0px 20px;
@@ -97,6 +98,27 @@ margin-right: 30px;
     font-size: 16px;
     background-color: #2f3e93;
     cursor:pointer;
+    a{
+      color:azure;
+      text-decoration:none;
+    }
+    &:hover{
+    background-color: #3f51b5;
+    transition: .5s;
+   }
+  }
+`
+const EditProductContainer = styled.div`
+  li{
+    width: 50%;
+    list-style-type:none;
+    padding: 8px 10px;
+    margin-top: 10px;
+    border-radius: 10px;  color: azure;
+    font-size: 16px;
+    background-color: #2f3e93;
+    cursor:pointer;
+    text-align:center;
     a{
       color:azure;
       text-decoration:none;
@@ -199,23 +221,26 @@ button+button{
 }
 
 `
-const ProductsAdmin = ({productsList, categories}) => {
 
-  const [Items] = useState(productsList)
-  const [filterProducts, setFilterProducts] =useState(Items)
-  const [deleteProduct, setDeleteProduct] = useState({})
-  const [deleteProductActionType, setDeleteProductActionType] = useState('')
+const ProductsAdmin = ({productsList, categories, fetchProducts}) => {
+
+!productsList&&fetchProducts()
+
+
+  const [Items] = useState(productsList);
+  const [filterProducts, setFilterProducts] =useState(Items);
+  const [deleteProduct, setDeleteProduct] = useState({});
+  const [deleteProductActionType, setDeleteProductActionType] = useState('');
 
   const deleteContainer = useRef();
 
-  const searchProduct = (products) => setFilterProducts(products)
+  const searchProduct = (products) => setFilterProducts(products);
 
- 
   const handelShowWindowDeleteProduct = (id, name) => {
   deleteContainer.current.style.display = 'block'
   setDeleteProduct({id,name})
-  }
-  const handelActionTypeDeletedProduct = (value) => setDeleteProductActionType(value)
+  };
+  const handelActionTypeDeletedProduct = (value) => setDeleteProductActionType(value);
 
   const handelDeleteProduct = (e) =>{
     e.preventDefault();
@@ -225,27 +250,30 @@ const ProductsAdmin = ({productsList, categories}) => {
     }else{
       deleteContainer.current.style.display = 'none'
     }
-}
+  };
 
-
-  const products =  filterProducts.map(product=>(
-    <ProductContainer key={product.id}>
+  const products =  filterProducts.map(product=>{
+    const {id,img, name,price,category} = product
+    return(
+    <ProductContainer key={id}>
       <PictureWrapper>
-        <img src={product.img} alt={product.name}/>
+        <img src={img} alt={name}/>
       </PictureWrapper>
-      <div>{product.name}</div>
-      <div>{product.price}</div>
-      <div>{product.category}</div>
-      <div><button>edit</button></div>
+      <div>{name}</div>
+      <div>{price}</div>
+      <div>{category}</div>
+      <EditProductContainer>
+      <li><Link to={`/admin/dashboard/products/updateProduct/${id}`} >edit</Link> </li>
+      </EditProductContainer>
       <div>
         <button
           onClick={
-            ()=>handelShowWindowDeleteProduct(product.id, product.name)}>
+            ()=>handelShowWindowDeleteProduct(id,name)}>
           delete
         </button>
       </div>
     </ProductContainer >
-  ))
+  )});
   return (
     <>
     <HeaderAdmin/>
@@ -274,11 +302,15 @@ const ProductsAdmin = ({productsList, categories}) => {
     </Container>
   </>
    );
-}
+};
 
 const mapStateToProps = (state) => ({
   productsList: state.products.products,
-  categories :state.categories.categories
-})
+  categories:state.categories.categories
+});
 
-export default connect(mapStateToProps, null)(ProductsAdmin);
+const mapDispatchToProps = (dispatch) => ({
+  fetchProducts: ()=> dispatch(fetchProducts())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsAdmin);

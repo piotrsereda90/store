@@ -131,17 +131,6 @@ li{
   list-style-type:none;
 }
 `
-// const Summary = styled.div`
-// position:fixed;
-// top: 30%;
-// left: 50%;
-// transform: translate(-50%, -50%);
-// width:300px;
-// height:200px;
-// border: 2px solid azure;
-// background-color:#202528;
-// z-index:2;
-// `
 const iconUser =<FontAwesomeIcon icon={faUserCircle}/>
 const arrowLeft = <FontAwesomeIcon icon={faReply}/>
 
@@ -168,7 +157,7 @@ const style={
 const AddProduct = () => {
 
   let history = useHistory();
-  
+
   const formik = useFormik({
    initialValues:{
      productId:'',
@@ -217,7 +206,7 @@ return (
   <OrderData>Add Product</OrderData>
   <BackToAdmin>
     <li>
-      <Link to='/admin/dashboard/products/'>
+      <Link to='/admin/dashboard/products'>
         <span style={style}>{arrowLeft}</span>
       </Link>
     </li>
@@ -254,7 +243,7 @@ return (
     />
     <ErrorContainer>{nameError}</ErrorContainer>
     <ButtonAddImg>Add Picture</ButtonAddImg>
-    <ErrorContainer>{}</ErrorContainer> 
+    <ErrorContainer>{}</ErrorContainer>
      <label htmlFor='description'></label>
     <Input
       id = 'description'
@@ -287,9 +276,6 @@ return (
      <ErrorContainer>{priceError}</ErrorContainer>
      <Button type="submit">Add Product</Button>
   </Form>
-  {/* <Summary>
-
-  </Summary> */}
   </Section>
 )
 };

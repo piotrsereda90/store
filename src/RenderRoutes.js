@@ -22,7 +22,7 @@ export function renderRoutes(){
       <SecureRoute exact path='/admin/dashboard/orders' component={OrdersAdmin}/>
       <SecureRoute exact path='/admin/dashboard/invoices' component={InvoicesAdmin}/>
       <SecureRoute exact path='/admin/dashboard/products/addProduct' component={AddProduct}/>
-      <SecureRoute exact path='/admin/dashboard/products/updateProduct' component={UpdateProduct}/>
+      <SecureRoute exact path='/admin/dashboard/products/updateProduct/:id' component={UpdateProduct}/>
       <Route exact path='/login' component={LoginPage}/>
       <Route path='/dashboard/basket' component={Basket}/>
       <Route path='/product/:id' component={ProductCard}/>

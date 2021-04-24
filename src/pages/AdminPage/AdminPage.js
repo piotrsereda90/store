@@ -3,6 +3,8 @@ import React from 'react';
 import HeaderAdmin from './HeaderAdmin';
 import SidebarAdmin from './SidebarAdmin';
 import styled from 'styled-components';
+import{connect} from 'react-redux';
+
 
 
 const Container = styled.div`
@@ -68,9 +70,10 @@ width: 20%;
 border:2px solid white;
 `
 const AdminPage = () => {
+
   return (
   <>
-    <HeaderAdmin/> 
+    <HeaderAdmin/>
     <SidebarAdmin />
     <Container>
       <SectionOne>
@@ -94,4 +97,8 @@ const AdminPage = () => {
   </>
    );
 }
-export default AdminPage;
+
+const mapDispatchToProps = (dispatch) => ({
+})
+const mapStateToProps = (state) => ({})
+export default connect(mapStateToProps, mapDispatchToProps) (AdminPage);

@@ -54,9 +54,9 @@ export const handlers = [
       ctx.status(200)
     )
   }),
-  rest.put('/updateProduct',(req, res,ctx) => {
+  rest.patch('/updateProduct',(req, res,ctx) => {
     return res(
-      ctx.statue(200)
+      ctx.status(200)
     )
   }),
   rest.post('/addProduct',(req, res,ctx)=> {

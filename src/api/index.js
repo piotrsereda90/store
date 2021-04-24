@@ -33,7 +33,7 @@ const api = {
     return axiosInstance.delete('/deleteProduct',{id});
   },
   updateProduct({product}){
-    return axiosInstance.put('/updateProduct',{product})
+    return axiosInstance.patch('/updateProduct',{product})
   },
   addProduct({product}){
     return axiosInstance.post('/addProduct',{product})
