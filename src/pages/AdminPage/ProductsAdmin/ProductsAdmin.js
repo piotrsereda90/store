@@ -170,6 +170,7 @@ button{
   &:hover{
     background-color: #3f51b5;
     transition: .5s;
+    cursor:pointer;
   }
 }
 }

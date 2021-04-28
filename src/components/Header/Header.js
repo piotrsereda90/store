@@ -19,12 +19,12 @@ z-index:3;
 width: 100vw;
 padding: 10px;
 background-color:#282C34;
-height: 90px;
+height: 100px;
 justify-content: space-between;
 border-bottom: 1px solid #0f1214;
 
 `
-const Logo = styled.div`
+const LogoImg = styled.div`
 background-color: azure;
 border-radius: 50%;
 padding: 10px 20px;
@@ -32,6 +32,12 @@ margin-left: 20px;
 img{
   display:block;
   height: 50px;
+}
+`
+const StoreName = styled.div`
+h1{
+  font-size: 70px;
+  font-family: 'Nanum Brush Script', cursive;
 }
 `
 const  RightToolBar = styled.div`
@@ -115,9 +121,6 @@ text-decoration: none;
   }
 }
 `
-const SearchWrapper = styled.div`
-margin-right: 10px;
-`
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
  shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>
@@ -149,13 +152,13 @@ function Header({orderList}) {
 
   return (
     <TopBar>
-      <Logo>
+      <LogoImg>
         <Link to='/'><img src={image} alt='logo' /></Link>
-      </Logo>
+      </LogoImg>
+      <StoreName>
+      <h1>Giwera.com</h1>
+      </StoreName>
       <RightToolBar>
-        <SearchWrapper>
-          
-        </SearchWrapper>
         <ShoppingBag>
           <li>
             <ShoppingBagLi to='/dashboard/basket'>

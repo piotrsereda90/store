@@ -16,7 +16,7 @@ ul{
   li{
     position:relative;
     color:azure;
-    padding:  4px 5px;
+    // padding:  4px 5px;
     margin-right: 10px;
     margin-left: 10px;
     overflow:hidden;

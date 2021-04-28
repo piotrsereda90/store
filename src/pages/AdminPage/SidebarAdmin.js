@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import{Link} from 'react-router-dom';
+import admin from '../../assets/image/admin.jpg';
 
 const Aside = styled.aside`
 background-color:#282C34;
@@ -14,10 +15,7 @@ width: 200px;
 const LinkContainer  = styled.div`
 display:flex;
 flex-direction:column;
-padding: 20px 0 10px 20px;
-// position:relative;
-// overflow:hidden;
-margin-top: 20px;
+padding: 0px 0 10px 20px;
 ul{
   margin:0 ;
   padding: 0;
@@ -44,13 +42,25 @@ a{
   background-color:transparent;
 
 `
+const ImgContainer = styled.div`
+display:flex;
+width: 100%;
+height: 100px;
+justify-content:center;
+margin-top: 20px;
+img{
+  width:50%;
+  height:100%;
+  border-radius: 50%;
+}
+`
 const SideBarAdmin = () => {
 
   return (
      <Aside>
-       <div>
-         dupaoasndsaihf
-       </div>
+       <ImgContainer>
+         <img src={admin} alt="admin"/>
+       </ImgContainer>
        <LinkContainer>
       <ul>
         <li>

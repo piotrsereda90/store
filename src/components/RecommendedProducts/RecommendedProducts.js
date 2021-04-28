@@ -22,7 +22,7 @@ padding-bottom: 30px;
 const Title = styled.h2`
 font-size:30px;
 width: 100%;
-padding: 20px;
+margin-bottom: 50px;
 color:azure;
 text-transform:uppercase;
 text-align:center;

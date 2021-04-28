@@ -23,9 +23,13 @@ const SectionProducts = styled.section`
 `
 const SectionTitle = styled.section`
 color: azure;
-font-size: 30px;
+font-size: 20px;
 text-align:center;
-padding: 20px
+padding: 20px;
+h2{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
 `
 const DashboardPage = () => {
   return (
@@ -37,7 +41,7 @@ const DashboardPage = () => {
             <SideBar/>
         </SectionSideBar>
       <Main>
-        <SectionTitle>PRODUKTY</SectionTitle>
+        <SectionTitle><h2>PRODUKTY</h2></SectionTitle>
         <SectionProducts>
           <ProductsCard/>
         </SectionProducts>

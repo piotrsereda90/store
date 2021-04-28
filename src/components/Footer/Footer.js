@@ -15,6 +15,7 @@ background-position: 20% 10%;
 background-attachment:fixed;
 color:azure;
 text-align:center;
+min-height: 500px;
 h1{
   margin-bottom: 50px;
 }
@@ -93,7 +94,7 @@ const Footer = () => {
       <h1>STOPKA</h1>
        <FirstSection>
         <div style={{paddingLeft: 30}}>
-        <h4>OBSŁUGA SKLEPU GIWERA.PL</h4>
+        <h4>OBSŁUGA SKLEPU GIWERA.COM</h4>
             <ul>
               <li>48 528 93 65</li>
               <li>48 752 52 55</li>
