@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import api from '../../../api';
 import {fetchProducts} from '../../../components/ProductsCard/containers/redux/reducer_products';
+import {fetchCategories} from '../../../components/SideBar/containers/redux/reducer_categories';
 
 const Container = styled.div`
 width:calc(100% - 200px);
@@ -222,9 +223,10 @@ button+button{
 
 `
 
-const ProductsAdmin = ({productsList, categories, fetchProducts}) => {
+const ProductsAdmin = ({productsList, categories, fetchProducts, fetchCategories}) => {
 
-!productsList&&fetchProducts()
+!productsList.length &&fetchProducts()
+!categories.length && fetchCategories()
 
 
   const [Items] = useState(productsList);
@@ -310,7 +312,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchProducts: ()=> dispatch(fetchProducts())
+  fetchProducts: ()=> dispatch(fetchProducts()),
+  fetchCategories: () => dispatch(fetchCategories())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsAdmin);

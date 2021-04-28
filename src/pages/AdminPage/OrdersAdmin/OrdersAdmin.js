@@ -1,7 +1,7 @@
 import React from 'react';
 
-import HeaderAdmin from './HeaderAdmin';
-import SidebarAdmin from './SidebarAdmin';
+import HeaderAdmin from '../HeaderAdmin';
+import SidebarAdmin from '../SidebarAdmin';
 
 import styled from 'styled-components';
 

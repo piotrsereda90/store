@@ -1,6 +1,6 @@
 import React from 'react';
 
-import api from '../../api/';
+import api from '../../../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle,faReply} from '@fortawesome/free-solid-svg-icons';
 import { useFormik  } from 'formik';
@@ -51,7 +51,7 @@ border-radius: 10px;
 border:3px solid;
 font-size: 16px;
 min-height:40px;
-min-width: 300px;
+min-width: 400px;
 &:hover {
  cursor:pointer;
  border: 3px solid #3f51b5;
