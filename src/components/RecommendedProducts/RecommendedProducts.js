@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft,faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {fetchRecommendedProducts} from './containers/redux/reducer_recommended_products';
+import { useTranslation } from 'react-i18next';
 
 const arrowLeft =<FontAwesomeIcon icon={faAngleLeft}/>
 const arrowRight =<FontAwesomeIcon icon={faAngleRight}/>
@@ -102,7 +103,7 @@ background-color:rgba(15,18,20, .3);
 `
 const RecommendedProducts = ({products,fetchRecommendedProducts}) => {
 
-
+const {t}= useTranslation();
 useEffect(()=>{
   fetchRecommendedProducts()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -130,7 +131,7 @@ scrollContainer.current.scrollLeft+= scrollOffset
   );
   return (
     <RecommendedProductsContainer>
-      <Title>Polecane</Title>
+      <Title>{t('description.part10')}</Title>
       <ProductsContainer ref={scrollContainer}>
         <ButtonLeft onClick ={()=> scroll(780)}><span>{arrowLeft}</span></ButtonLeft>
           {productsRecommended}

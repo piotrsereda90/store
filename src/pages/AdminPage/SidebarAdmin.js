@@ -9,7 +9,7 @@ background-color:#282C34;
 position:fixed;
 top:90px;
 left:0;
-height:800px;
+height:calc(100vh - 90px);
 width: 200px;
 `
 const LinkContainer  = styled.div`

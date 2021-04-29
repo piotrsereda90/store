@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import OrderProduct from './OrderProduct';
 import {useParams, Link} from 'react-router-dom';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faReply} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faReply} from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
 display:flex;
@@ -72,6 +73,7 @@ const arrowLeft =<FontAwesomeIcon icon={faReply}/>
 
 const Product = ({products}) => {
 
+  const {t}= useTranslation()
   const {id} = useParams()
 
   const filterProduct = products.filter(product => product.id === id)
@@ -94,7 +96,7 @@ const Product = ({products}) => {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <div></div>
-            <p>cena: {product.price} zł</p>
+            <p>{t('description.part36')} {product.price} </p>
           </div>
         </ProductDescription>
         <OrderProduct product={product}/>

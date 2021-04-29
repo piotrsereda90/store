@@ -90,6 +90,17 @@ text-decoration: none;
   }
 }
 `
+const StoreName = styled(Link)`
+  text-decoration:none;
+    a{
+      text-decoration:none;
+      color:#0F1214;
+    }
+  h1{
+    font-size: 70px;
+    font-family: 'Nanum Brush Script', cursive; 
+  }
+`
 
 function Header() {
   const [loginStatus, setLoginStatus]= useState(false);
@@ -120,6 +131,9 @@ function Header() {
     <LogoImg>
       <h2>Admin Panel</h2>
     </LogoImg>
+    <StoreName>
+      <Link to='/'><h1>Giwera.com</h1></Link>
+      </StoreName>
     <RightToolBar>
       <User
         onClick={handelUserMenu}>

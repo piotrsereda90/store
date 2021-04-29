@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import{Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {addProductToBasket} from './containers/redux/reducer_order';
+import { useTranslation } from 'react-i18next';
 
 const OrderContainer = styled.div`
 display:flex;
@@ -44,6 +45,9 @@ span{
 const ButtonContainer = styled.div`
 `
 const OrderProduct = ({product, addProductToBasket, orderProduct}) => {
+ 
+  const {t}=useTranslation();
+
   const [showInfo, setShowInfo]=useState(false);
 
   const showInfoProductExist = () => (
@@ -63,18 +67,18 @@ const OrderProduct = ({product, addProductToBasket, orderProduct}) => {
         <button
           onClick={
           ()=>checkProductExistInBasket(product.id,product, orderProduct,addProductToBasket)}>
-          dodaj do koszyka
+          {t('description.part37')}
         </button>
         <button>
           <li>
             <Link to='/dashboard/basket'>
-              idź koszyka
+            {t('description.part38')}
             </Link>
           </li>
         </button>
       </ButtonContainer>
       {showInfo
-       ? <InfoContainer><span>product jest już w koszyku</span></InfoContainer>
+       ? <InfoContainer><span>{t('description.part39')}</span></InfoContainer>
        : null
        }
   </OrderContainer>

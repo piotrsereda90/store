@@ -7,6 +7,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useFormik  } from 'formik';
 import styled from 'styled-components';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 const Section = styled.section`
 display:flex;
@@ -101,8 +102,6 @@ outline:none;
   transition: .5s;
 }
 `
-
-
 const iconUser =<FontAwesomeIcon icon={faUserCircle}/>
 
 const validationSchema = yup.object().shape({
@@ -124,6 +123,8 @@ const validationSchema = yup.object().shape({
 });
 
 const OrderSummary = ({order}) => {
+
+  const {t}= useTranslation();
 
   const [finishView, setFinishView] = useState(true)
 
@@ -188,7 +189,7 @@ const contactPhoneError = formik.errors.contactPhone? (
 return (
   finishView ?<Section>
   <IconUser>{iconUser}</IconUser>
-  <OrderData>Dane zamawiajacego</OrderData>
+  <OrderData> {t('description.part42')}</OrderData>
   <Form onSubmit={formik.handleSubmit}>
     <label htmlFor='emailAdress'></label>
     <Input
@@ -205,7 +206,7 @@ return (
       id = 'name'
       name='name'
       type='text'
-      placeholder='Nazwisko'
+      placeholder={t('description.part43')}
       onChange ={formik.handleChange}
       value = {formik.values.name}
     />
@@ -215,7 +216,7 @@ return (
       id = 'postCode'
       name='postCode'
       type='text'
-      placeholder='kod pocztowy'
+      placeholder={t('description.part44')}
       onChange ={formik.handleChange}
       value = {formik.values.postCode}
     />
@@ -225,7 +226,7 @@ return (
       id = 'city'
       name='city'
       type='text'
-      placeholder='Miasto'
+      placeholder={t('description.part45')}
       onChange ={formik.handleChange}
       value = {formik.values.city}
     />
@@ -235,7 +236,7 @@ return (
       id = 'street'
       name='street'
       type='text'
-      placeholder='Ulica'
+      placeholder={t('description.part46')}
       onChange ={formik.handleChange}
       value = {formik.values.street}
     />
@@ -245,7 +246,7 @@ return (
       id = 'houseNumber'
       name='houseNumber'
       type='text'
-      placeholder='Numer domu/mieszkania'
+      placeholder={t('description.part47')}
       onChange ={formik.handleChange}
       value = {formik.values.houseNumber}
     />
@@ -255,15 +256,15 @@ return (
       id = 'contactPhone'
       name='contactPhone'
       type='text'
-      placeholder='Numer kontaktowy'
+      placeholder={t('description.part48')}
       onChange ={formik.handleChange}
       value = {formik.values.contactPhone}
     />
      <ErrorContainer>{contactPhoneError}</ErrorContainer>
-     <Button type="submit">Złóż zamówienie</Button>
+     <Button type="submit">{t('description.part49')}</Button>
   </Form>
   </Section>
-  :<Section><div><span>dziękujemy zazłożenie zamowienia :)</span></div></Section>
+  :<Section><div><span>{t('description.part50')}</span></div></Section>
 )
 };
 const mapStateToProps = (state) =>({

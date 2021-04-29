@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {fetchCategories} from './containers/redux/reducer_categories';
 import FilterButton from './FilterButton';
+import { useTranslation } from 'react-i18next';
 
 const Aside = styled.aside`
 background-color:#282C34;
 position:fixed;
 top:90px;
 left:0;
-height:800px;
+height:calc(100vh - 90px);
 width: 200px;
 `
 const ButtonContainer  = styled.div`
@@ -40,9 +41,11 @@ button{
  }
 
 `
+
 const SideBar = ({fetchCategories, categories}) => {
 
- 
+ const {t}= useTranslation();
+
   useEffect(() =>{
     fetchCategories()
     //  eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,9 +53,10 @@ const SideBar = ({fetchCategories, categories}) => {
 
 
   const category = categories.map((item, key)=>(
-    <FilterButton  key={`category${key}`} filter={item.category}>{item.name}</FilterButton>
+    <FilterButton  key={`category${key}`} filter={item.category}>
+      {t(`description.part${++key}`)}
+    </FilterButton>
   ))
-
 
   return (
      <Aside>

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import background from '../../assets/image/background_deer.jpg'
+import background from '../../assets/image/background_deer.jpg';
+import { useTranslation } from 'react-i18next';
 
 const FooterContainer = styled.footer`
 display:flex;
@@ -15,7 +16,8 @@ background-position: 20% 10%;
 background-attachment:fixed;
 color:azure;
 text-align:center;
-min-height: 500px;
+justify-content:center;
+min-height: 600px;
 h1{
   margin-bottom: 50px;
 }
@@ -86,15 +88,16 @@ ul{
 `
 const Footer = () => {
 
+  const {t}= useTranslation();
+
   const handelClick = (e) => {
     e.preventDefault()
   }
   return (
     <FooterContainer>
-      <h1>STOPKA</h1>
        <FirstSection>
         <div style={{paddingLeft: 30}}>
-        <h4>OBSŁUGA SKLEPU GIWERA.COM</h4>
+        <h4>{t('description.part11')}</h4>
             <ul>
               <li>48 528 93 65</li>
               <li>48 752 52 55</li>
@@ -102,59 +105,59 @@ const Footer = () => {
             </ul>
         </div>
         <div>
-        <h4>POMOC</h4>
+        <h4>{t('description.part12')}</h4>
             <ul>
-              <li>Bezpieczne płatnośłci</li>
+              <li>{t('description.part13')}</li>
               <li>FAQ</li>
-              <li>Koszty dostawy</li>
-              <li>Reklamacje</li>
+              <li>{t('description.part14')}</li>
+              <li>{t('description.part15')}</li>
               <li></li>
             </ul>
         </div>
         <div>
-        <h4>O NAS</h4>
+        <h4>{t('description.part16')}</h4>
             <ul>
-              <li>Kontakt</li>
-              <li>Zasady współpracy</li>
-              <li>Znajdz salon</li>
-              <li>Kariera w Giwera</li>
+              <li>{t('description.part17')}</li>
+              <li>{t('description.part18')} </li>
+              <li>{t('description.part19')}</li>
+              <li>{t('description.part20')}</li>
             </ul>
         </div>
         <div>
         <h4>NEWSLETTER</h4>
           <form action="">
-            <input type="text" placeholder='Twój e-mail'/>
-            <button onClick={handelClick}>ZAPISZ</button>
-            <p>Zapisując się na nasz newsletter akceptujesz</p>
-            <p>Regulamin i Politykę Prywatności</p>
+            <input type="text" placeholder={t('description.part21')}/>
+            <button onClick={handelClick}>{t('description.part22')}</button>
+            <p>{t('description.part23')}</p>
+            <p>{t('description.part24')}</p>
           </form>
         </div>
        </FirstSection>
        <SecondSection>
          <div style={{paddingLeft: 30}}>
-           <h4>MOJE KONTO</h4>
+           <h4>{t('description.part25')}</h4>
            <ul>
-             <li>Zaloguj się</li>
-             <li>Rejestracja</li>
+             <li>{t('description.part26')}</li>
+             <li>{t('description.part27')}</li>
            </ul>
          </div>
          <div>
-         <h4>WYGODNE ZAKUP ONLINE</h4>
+         <h4>{t('description.part28')}</h4>
            <ul>
-             <li>60 dni na zwrot</li>
-             <li>Darmowa wysyłka od 149 zł</li>
-             <li>Dostawa w 72h</li>
+             <li>{t('description.part29')}</li>
+             <li>{t('description.part30')}</li>
+             <li>{t('description.part31')}</li>
            </ul>
          </div>
          <div>
-         <h4>INFORMACJE</h4>
+         <h4>{t('description.part32')}</h4>
            <ul>
-             <li>Regulaminy</li>
-             <li>Polityka prywatności</li>
+             <li>{t('description.part33')}</li>
+             <li>{t('description.part34')}</li>
            </ul>
          </div>
          <div>
-           <h4>ZAINSPIRUJ SIĘ NA</h4>
+           <h4>{t('description.part35')}</h4>
            <div>
              <div></div>
              <div></div>

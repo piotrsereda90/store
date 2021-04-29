@@ -92,9 +92,9 @@ font-size: 10px;
 `
 const PictureWrapper = styled.div`
 img{
-  width: 100%;
-  height: 100%;
-  
+  width: 80%;
+  height: 80%;
+  padding-left:40px;
 }
 
 `

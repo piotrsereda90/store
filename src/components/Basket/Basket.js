@@ -6,6 +6,8 @@ import {Link }from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import {addProductAmount,removeProductAmount, removeProductFromBasket } from '../ProductCard/containers/redux/reducer_order';
+import { useTranslation } from 'react-i18next';
+
 
 const BasketContainer = styled.div`
 display:flex;
@@ -20,7 +22,6 @@ a{
     height: 40px;
     text-transform: uppercase;
     letter-spacing: 1px;
-   
 }
 span{
   color:azure;
@@ -47,11 +48,6 @@ img{
   
 }
 `
-// const IconBasket = styled.div`
-// font-size: 100px;
-// color:azure;
-// width: 100%;
-// `
 const OrderListContainer = styled.div`
 display:flex;
 width: 100%;
@@ -87,9 +83,9 @@ padding:0 10px;
 }
 `
 const ButtonRemove = styled.button`
-margin-left: 15px;`
+margin-left: 15px;
+`
 
-// const iconBasket =<FontAwesomeIcon icon={faShoppingBasket}/>
 const arrowLeft = <FontAwesomeIcon icon={faReply}/>
 const style={
   display:'block',
@@ -98,6 +94,9 @@ const style={
   padding:30,
 }
 const Basket = ({orderList, addProductAmount, removeProductAmount, removeProductFromBasket}) => {
+
+  const {t}=useTranslation();
+
   const order =  orderList.map((item, key) => (
 
   <OrderWrapper key={`${item.id + key}`}>
@@ -119,7 +118,7 @@ const Basket = ({orderList, addProductAmount, removeProductAmount, removeProduct
       </button>
       <ButtonRemove
         onClick={()=>removeProductFromBasket(item.id)}>
-         usuń produkt z koszyka
+        {t('description.part40')}
       </ButtonRemove>
     </ButtonWrapper>
   </OrderWrapper>
@@ -132,12 +131,11 @@ const Basket = ({orderList, addProductAmount, removeProductAmount, removeProduct
         <BackToShop>
           <li><Link to='/'><span style={style}>{arrowLeft}</span></Link></li>
         </BackToShop>
-        {/* <IconBasket>{iconBasket}</IconBasket> */}
         <OrderListContainer >
           {order}
        </OrderListContainer>
         {orderList.length 
-        ? <Link to='/order/summary'> <span>przejdz do realizacji zamówienia </span></Link>
+        ? <Link to='/order/summary'> <span> {t('description.part41')} </span></Link>
         : null}
       </BasketContainer>
    </>

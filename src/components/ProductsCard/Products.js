@@ -6,6 +6,7 @@ import {fetchProducts} from './containers/redux/reducer_products';
 import{Link} from 'react-router-dom';
 import  filterCategories from '../SideBar/FilterCategories';
 import Pagination from './Pagination';
+import { useTranslation } from 'react-i18next';
 
 const ProductContainer = styled.div`
 display:flex;
@@ -38,8 +39,20 @@ span{
   color:azure;
 }
 `
+const MainTitle = styled.h2`
+width: 100%;
+color: azure;
+font-size: 35px;
+text-align:center;
+padding: 20px;
+margin-top: 30px;
+margin-bottom: 20px;
+
+`
 
 const Products = ({ products,fetchProducts}) => {
+
+  const {t}=useTranslation();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] =useState(12)
@@ -75,6 +88,7 @@ const Products = ({ products,fetchProducts}) => {
 
   return (
     <>
+      <MainTitle>{t('description.part9')}</MainTitle>
       {product}
       <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
     </>

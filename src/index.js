@@ -9,8 +9,8 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import reducers from './rootReducers';
+import './i18n';
 
-// Start the mocking conditionally.
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./api/mocks/browser')
   worker.start()
