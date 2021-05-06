@@ -1,10 +1,12 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useContext} from 'react';
 
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {fetchCategories} from './containers/redux/reducer_categories';
 import FilterButton from './FilterButton';
 import { useTranslation } from 'react-i18next';
+import {device} from '../MediaQuery/MediaQuery';
+import {AppContext} from '../../AppContext';
 
 const Aside = styled.aside`
 background-color:#282C34;
@@ -13,6 +15,13 @@ top:90px;
 left:0;
 height:calc(100vh - 90px);
 width: 200px;
+z-index:3;
+@media ${device.tablet}{
+  display:none;
+}
+@media (min-width: 1280px){
+  display:block;
+}
 `
 const ButtonContainer  = styled.div`
 display:flex;
@@ -44,6 +53,8 @@ button{
 
 const SideBar = ({fetchCategories, categories}) => {
 
+  // const {sidebarVisible} = useContext(AppContext)
+
  const {t}= useTranslation();
 
   useEffect(() =>{
@@ -59,7 +70,9 @@ const SideBar = ({fetchCategories, categories}) => {
   ))
 
   return (
-     <Aside>
+     <Aside 
+    //  style={{display:sidebarVisible? 'block':'none'}}
+     >
        <ButtonContainer>
          {category}
        </ButtonContainer>

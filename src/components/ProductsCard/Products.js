@@ -7,6 +7,7 @@ import{Link} from 'react-router-dom';
 import  filterCategories from '../SideBar/FilterCategories';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
+import {device} from '../MediaQuery/MediaQuery';
 
 const ProductContainer = styled.div`
 display:flex;
@@ -18,6 +19,14 @@ padding: 20px 10px;
 border-radius: 5px;
 margin:10px;
 overflow:hidden;
+@media ${device.tablet}{
+  width: 40%;
+ 
+}
+@media ${device.mobileL}{
+  width: 70%;
+  overflow:hidden;
+}
 li{
   list-style-type: none;
 a{

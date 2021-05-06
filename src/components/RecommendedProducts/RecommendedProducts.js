@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft,faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {fetchRecommendedProducts} from './containers/redux/reducer_recommended_products';
 import { useTranslation } from 'react-i18next';
+import{device} from '../MediaQuery/MediaQuery';
 
 const arrowLeft =<FontAwesomeIcon icon={faAngleLeft}/>
 const arrowRight =<FontAwesomeIcon icon={faAngleRight}/>
@@ -19,6 +20,10 @@ width: calc(100% - 200px);
 margin-left: 200px;
 background-color:#0f1214;
 padding-bottom: 30px;
+@media ${device.tablet}{
+  margin-left: 0;
+  width: 100%;
+}
 `
 const Title = styled.h2`
 font-size:30px;

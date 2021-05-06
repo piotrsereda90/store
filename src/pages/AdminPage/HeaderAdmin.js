@@ -1,4 +1,4 @@
-import React,{useState, useEffect } from 'react'
+import React,{useState, useEffect } from 'react';
 
 import {
   Link,
@@ -90,15 +90,15 @@ text-decoration: none;
   }
 }
 `
-const StoreName = styled(Link)`
-  text-decoration:none;
-    a{
-      text-decoration:none;
-      color:#0F1214;
-    }
+const StoreName = styled.li`
+  list-style-type:none;
+  a{
+    text-decoration:none;
+    color:#0F1214;
+  }
   h1{
-    font-size: 70px;
-    font-family: 'Nanum Brush Script', cursive; 
+  font-size: 70px;
+  font-family: 'Nanum Brush Script', cursive;
   }
 `
 

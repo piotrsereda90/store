@@ -1,4 +1,4 @@
-import React,{useState, useEffect } from 'react'
+import React,{useState, useEffect, useContext } from 'react'
 
 import{connect}from 'react-redux';
 import {
@@ -7,12 +7,15 @@ import {
 } from "react-router-dom";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faShoppingBag, faBars} from '@fortawesome/free-solid-svg-icons';
 import image from '../../assets/image/logo_deer.png';
 import { useTranslation } from 'react-i18next';
 import  England from '../../assets/image/England.png';
 import  Poland from '../../assets/image/Poland.png';
 import  German from '../../assets/image/Germany.png';
+import{device} from '../MediaQuery/MediaQuery';
+import {AppContext} from '../../AppContext';
+
 
 const TopBar = styled.header`
 display:flex;
@@ -38,12 +41,18 @@ img{
   display:block;
   height: 50px;
 }
+@media ${device.tablet}{
+  margin-right: 0;
+ }
 `
 const  RightToolBar = styled.div`
 display:flex;
 position:relative;
 align-items:center;
 justify-content: center;
+@media ${device.laptop}{
+  flex-direction:column;
+}
 `
 const User = styled.div`
 position:relative;
@@ -59,6 +68,9 @@ cursor:pointer;
   color: #2f3e93;
   transition: .2s;
 }
+@media ${device.tablet}{
+ display:none;
+}
 `
 const ShoppingBag = styled.div`
 width: 50px;
@@ -67,13 +79,18 @@ line-height:1;
 font-size:40px;
 list-style-type:none;
 margin-left: 30px;
+@media ${device.tablet}{
+  display:none;
+ }
 `
-
-const StoreName = styled(Link)`
-  text-decoration:none;
-    a{
-      text-decoration:none;
-      color:#0F1214;
+const StoreName = styled.li`
+@media ${device.mobileL} {
+  display: none;
+}
+  list-style-type:none;
+  a{
+    text-decoration:none;
+    color:#0F1214;
     }
   h1{
     font-size: 70px;
@@ -134,6 +151,7 @@ text-decoration: none;
 }
 `
 const FlagWrapper = styled.div`
+display:flex;
 button{
   width: 30px;
   height: 20px;
@@ -143,13 +161,35 @@ button{
     cursor:pointer;
   }
 }
+@media ${device.tablet}{
+  display:none;
+ }
+`
+const IconContainer = styled.div`
+display:flex;
+@media ${device.laptop}{
+  padding-top: 20px;
+}
+`
+const Burger = styled.div`
+display:none;
+padding: 20px;
+font-size: 30px;
+color:azure;
+@media ${device.tablet}{
+  display:block;
+}
 `
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
- shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>
+ shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>,
+ burger:<FontAwesomeIcon icon={faBars}/>
 };
 function Header({orderList}) {
+
+  const {handelToggleStateSidebar} = useContext(AppContext)
   const {i18n}= useTranslation();
+
 
   const lngs = {
     en: { nativeName: <img src={England} alt="EnglandFlag"/> },
@@ -159,6 +199,10 @@ function Header({orderList}) {
 
   const [loginStatus, setLoginStatus]= useState(false);
   const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false);
+
+  const handelBurger = () => {
+    handelToggleStateSidebar()
+  }
 
   let history = useHistory()
   let session = sessionStorage.getItem('accessToken')
@@ -185,40 +229,42 @@ function Header({orderList}) {
         <Link to='/'><img src={image} alt='logo' /></Link>
       </LogoImg>
       <StoreName>
-      <Link to='/'><h1>Giwera.com</h1></Link>
+        <Link to='/'><h1>Giwera.com</h1></Link>
       </StoreName>
       <RightToolBar>
-      <FlagWrapper>
-        {Object.keys(lngs).map((lng) => (
-         <button key={lng} type="submit" onClick={() => i18n.changeLanguage(lng)}>
-          <span>{lngs[lng].nativeName}</span>
-        </button>
-      ))}
-      </FlagWrapper>
-        <ShoppingBag>
-          <li>
-            <ShoppingBagLi to='/dashboard/basket'>
-              {picture.shoppingBag}
-              <OrderAmount>
-                {orderList.length}
-              </OrderAmount>
-            </ShoppingBagLi>
-          </li>
-        </ShoppingBag>
-        <User
-          onClick={handelUserMenu}>
-          <div>{picture.iconUser}</div>
-          {UserMenuIsOpen
-          ?<UserMenu>
-            <UserMenuUl>
-              <UserMenuLi><UserMenuLink to='/admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
-              <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
-            </UserMenuUl>
-          </UserMenu>
-          : null}
-        </User>
+        <Burger onClick={()=>handelBurger()}><span>{picture.burger}</span></Burger>
+        <FlagWrapper>
+          {Object.keys(lngs).map((lng) => (
+           <button key={lng} type="submit" onClick={() => i18n.changeLanguage(lng)}>
+            <span>{lngs[lng].nativeName}</span>
+          </button>
+        ))}
+        </FlagWrapper>
+        <IconContainer>
+          <ShoppingBag>
+            <li>
+              <ShoppingBagLi to='/dashboard/basket'>
+                {picture.shoppingBag}
+                <OrderAmount>
+                  {orderList.length}
+                </OrderAmount>
+              </ShoppingBagLi>
+            </li>
+          </ShoppingBag>
+          <User
+            onClick={handelUserMenu}>
+            <div>{picture.iconUser}</div>
+            {UserMenuIsOpen
+            ?<UserMenu>
+              <UserMenuUl>
+                <UserMenuLi><UserMenuLink to='/admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
+                <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
+              </UserMenuUl>
+            </UserMenu>
+            : null}
+          </User>
+        </IconContainer>
       </RightToolBar>
-
     </TopBar>);
 }
 

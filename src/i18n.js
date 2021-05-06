@@ -61,7 +61,7 @@ i18n
             part39:'The product is already in the cart',
             part40:'Remove the product from the cart',
             part41:'Go to order fulfillment',
-            part42:'ORDERING PARTY'+'S DETAILS',
+            part42:'ORDERING PARTY DETAILS',
             part43:'Name',
             part44:'Postal Code',
             part45:'City',

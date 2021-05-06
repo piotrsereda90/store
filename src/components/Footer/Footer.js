@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import background from '../../assets/image/background_deer.jpg';
 import { useTranslation } from 'react-i18next';
+import{device} from '../MediaQuery/MediaQuery';
 
 const FooterContainer = styled.footer`
 display:flex;
@@ -20,6 +21,10 @@ justify-content:center;
 min-height: 600px;
 h1{
   margin-bottom: 50px;
+}
+@media ${device.tablet}{
+  width: 100%;
+  margin-left: 0;
 }
 `
 const FirstSection = styled.div`
