@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import styled from 'styled-components'
-import Products from './Products'
+import styled from 'styled-components';
+import Products from './Products';
 
 
 const ProductsContainer = styled.div`

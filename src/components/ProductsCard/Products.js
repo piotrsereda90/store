@@ -8,6 +8,7 @@ import  filterCategories from '../SideBar/FilterCategories';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
 import {device} from '../MediaQuery/MediaQuery';
+import PropTypes from 'prop-types';
 
 const ProductContainer = styled.div`
 display:flex;
@@ -21,11 +22,9 @@ margin:10px;
 overflow:hidden;
 @media ${device.tablet}{
   width: 40%;
- 
 }
 @media ${device.mobileL}{
   width: 70%;
-  overflow:hidden;
 }
 li{
   list-style-type: none;
@@ -82,16 +81,16 @@ const Products = ({ products,fetchProducts}) => {
 
   const product = currentPosts.map(item =>
     <ProductContainer
-    key={item.id}
-    >
-      <ul>
-        <li>
-          <Link to={`/product/${item.id}`}>
-            <span>{item.name}</span>
-            <img  src={item.img} alt={item.name}/>
-          </Link>
-        </li>
-      </ul>
+      key={item.id}
+      >
+        <ul>
+          <li>
+            <Link to={`/product/${item.id}`}>
+              <span>{item.name}</span>
+              <img  src={item.img} alt={item.name}/>
+            </Link>
+          </li>
+        </ul>
    </ProductContainer>
   );
 
@@ -103,13 +102,16 @@ const Products = ({ products,fetchProducts}) => {
     </>
    );
   }
-
+  Products.propTypes = {
+    products: PropTypes.array.isRequired,
+    fetchProducts: PropTypes.func.isRequired,
+  }
   const mapStateToProps = (state) => ({
     products:  filterCategories(state.filter,state.products.products),
     paginationNumberSide: state.pagination,
-})
+  })
   const mapDispatchToProps = (dispatch) => ({
     fetchProducts: () => dispatch(fetchProducts())
-})
+  })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

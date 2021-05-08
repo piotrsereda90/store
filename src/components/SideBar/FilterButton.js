@@ -13,5 +13,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     type: 'FILTER_CATEGORY',
     filter: ownProps.filter
   })
-})
+});
 export default connect(null, mapDispatchToProps) (FilterButton);

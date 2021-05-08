@@ -8,6 +8,7 @@ import { faAngleLeft,faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {fetchRecommendedProducts} from './containers/redux/reducer_recommended_products';
 import { useTranslation } from 'react-i18next';
 import{device} from '../MediaQuery/MediaQuery';
+import PropTypes from 'prop-types';
 
 const arrowLeft =<FontAwesomeIcon icon={faAngleLeft}/>
 const arrowRight =<FontAwesomeIcon icon={faAngleRight}/>
@@ -119,7 +120,6 @@ const scroll = (scrollOffset)=> {
 scrollContainer.current.scrollLeft+= scrollOffset
 };
 
-
   const productsRecommended = products.map(item =>
     <Product
       key={item.id}
@@ -145,6 +145,10 @@ scrollContainer.current.scrollLeft+= scrollOffset
     </RecommendedProductsContainer>
    );
 }
+ RecommendedProducts.propTypes= {
+  products: PropTypes.array.isRequired,
+  fetchRecommendedProducts: PropTypes.func.isRequired
+ }
 const mapStateToProps = (state) => ({
   products: state.recommendedProducts.recommendedProducts,
 })

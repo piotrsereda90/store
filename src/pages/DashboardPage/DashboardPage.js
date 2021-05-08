@@ -1,4 +1,4 @@
-import React,{useState, useLayoutEffect} from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import Header from '../../components/Header';
@@ -7,7 +7,7 @@ import  ProductsCard from '../../components/ProductsCard';
 import  RecommendedProducts from '../../components/RecommendedProducts';
 import  Footer from '../../components/Footer';
 import {device} from '../../components/MediaQuery/MediaQuery';
-import {AppContext, defaultObject} from '../../AppContext';
+// import {AppContext} from '../../AppContext';
 
 const Main = styled.main`
 display:flex;
@@ -26,50 +26,18 @@ width: 15vw;
 `
 const DashboardPage = () => {
 
-  // const desktopViewport = window.matchMedia('screen and (min-width: 1280px)')
 
-  const[sidebarVisible, setSidebarVisible]= useState(defaultObject.sidebarVisible);
-  // 1280
-
-  // function useWindowSize() {
-  //   const [size, setSize] = useState(0);
-  //   useLayoutEffect(() => {
-  //     function updateSize() {
-  //       setSize(window.innerWidth);
-  //     }
-  //     window.addEventListener('resize', updateSize);
-  //     updateSize();
-  //     return () => window.removeEventListener('resize', updateSize);
-  //   }, []);
-  //   return size;
-  // }
-  // const windowSize = useWindowSize()
-  // // console.log(windowSize)
-  // windowSize ===1280 &&setSidebarVisible(true)
-
-  // function ShowWindowDimensions(){
-  //   const [width] = useWindowSize()
-  //   console.log(width)
-  //   width === 1280 &&setSidebarVisible(true)
-  // }
-  // ShowWindowDimensions()
-
-
-//  desktopViewport.addEventListener('resize',isDesktop => {
-//   setSidebarVisible(isDesktop)
-//  }
-
-  const handelToggleStateSidebar  = () => setSidebarVisible(prevValue => !prevValue);
+  // const handelToggleStateSidebar  = () => setSidebarVisible(prevValue => !prevValue);
   return (
     <>
-      <AppContext.Provider value={{ sidebarVisible, handelToggleStateSidebar }}>
+      {/* <AppContext.Provider value={{ sidebarVisible, handelToggleStateSidebar }}> */}
         <nav>
         <Header/>
         </nav>
           <SectionSideBar>
               <SideBar/>
           </SectionSideBar>
-      </AppContext.Provider>
+      {/* </AppContext.Provider> */}
         <Main>
           <section>
             <ProductsCard/>

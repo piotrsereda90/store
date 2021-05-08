@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faReply} from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
 display:flex;
@@ -109,7 +110,10 @@ const Product = ({products}) => {
      {product}
     </Container>
     );
-}
+  }
+  Product.propTypes = {
+    products:PropTypes.array.isRequired
+  }
 
 const mapStateToProps = (state) => ({
 products: state.products.products

@@ -84,7 +84,7 @@ margin-left: 30px;
  }
 `
 const StoreName = styled.li`
-@media ${device.mobileL} {
+@media ${device.mobileL } {
   display: none;
 }
   list-style-type:none;

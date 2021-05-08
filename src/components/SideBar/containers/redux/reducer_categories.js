@@ -1,6 +1,5 @@
 import api from '../../../../api'
 
-
 const CATEGORIES_FETCH_REQUESTED = 'CATEGORIES_FETCH_REQUESTED';
 const CATEGORIES_FETCH_SUCCEEDED = 'CATEGORIES_FETCH_SUCCEEDED';
 const CATEGORIES_FETCH_FAILED = 'CATEGORIES_FETCH_FAILED';
@@ -56,8 +55,6 @@ const reducerCategories = (state=INITIAL_STATE, action)=> {
         ieError:true
       }
       default: return state
-
   }
-
 }
 export default reducerCategories

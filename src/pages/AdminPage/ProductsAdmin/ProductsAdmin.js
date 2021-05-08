@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 import api from '../../../api';
 import {fetchProducts} from '../../../components/ProductsCard/containers/redux/reducer_products';
 import {fetchCategories} from '../../../components/SideBar/containers/redux/reducer_categories';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
 width:calc(100% - 200px);
@@ -256,7 +257,7 @@ const ProductsAdmin = ({productsList, categories, fetchProducts, fetchCategories
   };
 
   const products =  filterProducts.map(product=>{
-    const {id,img, name,price,category} = product
+    const {id,img, name,price,category} = product;
     return(
     <ProductContainer key={id}>
       <PictureWrapper>
@@ -306,6 +307,13 @@ const ProductsAdmin = ({productsList, categories, fetchProducts, fetchCategories
   </>
    );
 };
+
+ProductsAdmin.propTypes={
+  productsList: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  fetchProducts:PropTypes.func.isRequired,
+  fetchCategories: PropTypes.func.isRequired,
+}
 
 const mapStateToProps = (state) => ({
   productsList: state.products.products,

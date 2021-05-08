@@ -1,4 +1,4 @@
-import React,{useEffect, useContext} from 'react';
+import React,{useEffect} from 'react';
 
 import styled from 'styled-components';
 import {connect} from 'react-redux';
@@ -6,7 +6,7 @@ import {fetchCategories} from './containers/redux/reducer_categories';
 import FilterButton from './FilterButton';
 import { useTranslation } from 'react-i18next';
 import {device} from '../MediaQuery/MediaQuery';
-import {AppContext} from '../../AppContext';
+import PropTypes from 'prop-types';
 
 const Aside = styled.aside`
 background-color:#282C34;
@@ -50,7 +50,6 @@ button{
  }
 
 `
-
 const SideBar = ({fetchCategories, categories}) => {
 
   // const {sidebarVisible} = useContext(AppContext)
@@ -70,7 +69,7 @@ const SideBar = ({fetchCategories, categories}) => {
   ))
 
   return (
-     <Aside 
+     <Aside
     //  style={{display:sidebarVisible? 'block':'none'}}
      >
        <ButtonContainer>
@@ -78,6 +77,10 @@ const SideBar = ({fetchCategories, categories}) => {
        </ButtonContainer>
      </Aside>
      );
+}
+SideBar.propTypes ={
+  categories: PropTypes.array.isRequired,
+  fetchCategories: PropTypes.func.isRequired
 }
  const mapStateToProps = (state) => ({
    categories: state.categories.categories,

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply} from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import { Link, useHistory, useParams } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 
 const Section = styled.section`
@@ -294,6 +295,9 @@ return (
   </Section>
 )
 };
+UpdateProduct.propTypes = {
+  productsList: PropTypes.array.isRequired
+}
 
 const mapStateToProps =(state) => ({
   productsList: state.products.products

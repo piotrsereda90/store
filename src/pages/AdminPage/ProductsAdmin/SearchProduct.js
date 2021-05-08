@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types'
 
 const SearchProduct = ({productsList, searchProduct, categories}) => {
 
@@ -36,5 +36,9 @@ const SearchProduct = ({productsList, searchProduct, categories}) => {
   </form>
   );
 }
- 
+SearchProduct.propTypes = {
+  searchProduct: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  productsList: PropTypes.array.isRequired,
+}
 export default SearchProduct;
