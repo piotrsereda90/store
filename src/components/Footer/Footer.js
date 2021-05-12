@@ -94,6 +94,7 @@ ul{
 const Footer = () => {
 
   const {t}= useTranslation();
+  // const { t } = jest ? {t:s=>s} : useTranslation();
 
   const handelClick = (e) => {
     e.preventDefault()
