@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import {BrowserRouter} from 'react-router-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from '../rootReducers';
 import { Provider } from 'react-redux';
@@ -25,7 +25,9 @@ const store = createStore(
   applyMiddleware(...middleware)
 );
 const Wrapper = ({children}) => (
-  <Provider store ={store}>{children}</Provider>
+  <Router>
+    <Provider store ={store}>{children}</Provider>
+  </Router>
 )
 
 describe('Basket', () => {
@@ -33,7 +35,17 @@ describe('Basket', () => {
     render(
       <Basket />, {wrapper:Wrapper}
     );
+      const removeButton = screen.queryByText(/description.part40/)
+      expect(removeButton).toBeNull()
 
-    screen.debug();
+      let orderProductNumber = screen.queryByText(/1/)
+      expect(orderProductNumber).toBeNull()
+
+
+      const addProductAmount = screen.queryByText(/'+'/)
+      expect(addProductAmount).toBeNull()
+
+      const removeProductAmount = screen.queryByText(/'-'/)
+      expect(removeProductAmount).toBeNull()
   });
 });

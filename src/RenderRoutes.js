@@ -28,7 +28,6 @@ export function renderRoutes(){
       <Route path='/product/:id' component={ProductCard}/>
       <Route path='/order/summary/' component={OrderSummary}/>
       <Route path='*' component={NoMatch}/>
-
     </Switch>
    );
 }

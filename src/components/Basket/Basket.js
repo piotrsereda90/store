@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Header';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
-import {Link, Route }from 'react-router-dom';
+import {Link }from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import {addProductAmount,removeProductAmount, removeProductFromBasket } from '../ProductCard/containers/redux/reducer_order';
@@ -126,7 +126,6 @@ const Basket = ({orderList, addProductAmount, removeProductAmount, removeProduct
   
   return (
     <>
-
       <Header/>
       <BasketContainer>
         <BackToShop>
