@@ -97,7 +97,7 @@ const Product = ({products}) => {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <div></div>
-            <p>{t('description.part36')} {product.price} </p>
+            <p>{t('description.part36')} {`${product.price} $`} </p>
           </div>
         </ProductDescription>
         <OrderProduct product={product}/>

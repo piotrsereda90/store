@@ -70,6 +70,7 @@ i18n
             part48:'Tel',
             part49:'SUBMIT YOUR ORDER',
             part50:'Thank you for your order :)',
+            part51:'Product added to card',
           }
         }
       },
@@ -126,6 +127,8 @@ i18n
             part48:'Tel',
             part49:'SENDEN SIE IHRE BESTELLUNG',
             part50:'Vielen Dank für Ihre Bestellung :)',
+            part51:'Artikel hinzügefugt',
+
           }
         }
       },
@@ -182,6 +185,7 @@ i18n
             part48:'Tel',
             part49:'ZŁÓŻ ZAMÓWIENIE',
             part50:'Dziękujemy zazłożenie zamowienia :)',
+            part51:'Dodałeś produkt do koszyka',
           }
         }
       },

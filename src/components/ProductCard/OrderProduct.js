@@ -43,19 +43,32 @@ span{
 
 `
 const ButtonContainer = styled.div`
+button{
+  &:hover{
+    cursor:pointer;
+  }
+}
 `
 const OrderProduct = ({product, addProductToBasket, orderProduct}) => {
- 
+
   const {t}=useTranslation();
 
-  const [showInfo, setShowInfo]=useState(false);
+  const [showInfoProductInCard, setShowInfoProductInCard]=useState(false);
+  const [showInfoProductAddToCard, setShowInfoProductAddToCard] = useState(false)
+
 
   const showInfoProductExist = () => (
-    setShowInfo(true)
+    setShowInfoProductInCard(true)
   )
+
+  const showInfoProductAddedCard = () => {
+    setShowInfoProductAddToCard(true)
+  }
 
   const checkProductExistInBasket = (id, product, orderProduct,addProductToBasket) => {
     const productExist = orderProduct.some( product => product.id ===id);
+
+    showInfoProductAddedCard()
 
     productExist
     ? showInfoProductExist()
@@ -77,8 +90,12 @@ const OrderProduct = ({product, addProductToBasket, orderProduct}) => {
           </li>
         </button>
       </ButtonContainer>
-      {showInfo
+      {showInfoProductInCard
        ? <InfoContainer><span>{t('description.part39')}</span></InfoContainer>
+       : null
+       }
+       {showInfoProductAddToCard && !showInfoProductInCard
+       ? <InfoContainer><span>{t('description.part51')}</span></InfoContainer>
        : null
        }
   </OrderContainer>
