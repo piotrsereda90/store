@@ -1,11 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import api from '../../../api';
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply} from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
@@ -21,35 +21,6 @@ const NewData = styled.div`
 display:flex;
 flex-direction:column;
 margin-left: 50px;
-span{
-  color:azure;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 30px;
-}
-`
-const CurrentData = styled.div`
-display:flex;
-flex-direction:column;
-width: 400px;
-margin-right: 50px;
-div{
-padding: 0px 20px;
-border-radius: 10px;
-border:3px solid;
-font-size: 16px;
-height:40px;
-min-width: 400px;
-line-height:2;
-margin-top:3px;
-}
-div:nth-child(6){
-  overflow-y: scroll;
-  height:120px;
-}
-div:nth-child(2){
-  margin-top: 15px;
-}
 span{
   color:azure;
   text-transform: uppercase;
@@ -159,20 +130,37 @@ const style={
 }
 const UpdateProduct = ({productsList}) => {
 
-  function useInput(initialValue=''){
-    const [value, setValue] = useState('');
-    const handelChange = (e) => {
-      setValue(e.target.value);
-    };
-    return[value, handelChange];
-   };
+  // use it if you wont turn off auto fill 
 
-   const[productId, handelChangeProductId] = useInput('');
-   const[category, handelChangeCategory] = useInput('');
-   const[name, handelChangeName] = useInput('');
-   const[description, handelChangeDescription] = useInput('');
-   const[amount, handelChangeAmount] = useInput('');
-   const[price, handelChangePrice] = useInput('');
+  // function useInput(initialValue=''){
+  //   const [value, setValue] = useState('');
+  //   const handelChange = (e) => {
+  //     setValue(e.target.value);
+  //   };
+  //   return[value, handelChange];
+  //  };
+  //  const[productId, handelChangeProductId] = useInput('');
+  //  const[category, handelChangeCategory] = useInput('');
+  //  const[name, handelChangeName] = useInput('');
+  //  const[description, handelChangeDescription] = useInput('');
+  //  const[amount, handelChangeAmount] = useInput('');
+  //  const[price, handelChangePrice] = useInput('');
+
+   const[productId, handelChangeProductId] = useState('');
+   const[category, handelChangeCategory] = useState('');
+   const[name, handelChangeName] = useState('');
+   const[description, handelChangeDescription] = useState('');
+   const[amount, handelChangeAmount] = useState('');
+   const[price, handelChangePrice] = useState('');
+
+
+   const handelChangeFormProductId = (e) => handelChangeProductId(e.target.value)
+   const handelChangeFormCategory = (e) => handelChangeCategory(e.target.value)
+   const handelChangeFormName = (e) => handelChangeName(e.target.value)
+   const handelChangeFormDescription = (e) => handelChangeDescription(e.target.value)
+   const handelChangeFormAmount = (e) => handelChangeAmount(e.target.value)
+   const handelChangeFormPrice = (e) => handelChangePrice(e.target.value)
+  
 
   let history = useHistory();
 
@@ -201,29 +189,22 @@ const UpdateProduct = ({productsList}) => {
       };
 
 const handelAddImg = () => {}
- const productCurrentProperties = product.map(item =>{
 
- const {id,category, name,img,description,amount,price}=item
+useEffect(()=>{
+  product.map(item =>{
+    const {id,category, name,img,description,amount,price}=item
+    handelChangeProductId(id)
+    handelChangeCategory(category)
+    handelChangeName(name)
+    handelChangeDescription(description)
+    handelChangeAmount(amount)
+    handelChangePrice(price)
+   }
+   )
+},[])
 
- return(
-  <React.Fragment key={id}>
-    <div>{id}</div>
-    <div>{category}</div>
-    <div>{name}</div>
-    <div>{img}</div>
-    <div>{description}</div>
-    <div>{amount}</div>
-    <div>{price}</div>
-  </React.Fragment>
- )
-}
-)
 return (
   <Section>
-    <CurrentData>
-    <Title>Current Data</Title>
-      {productCurrentProperties}
-    </CurrentData>
     <NewData>
     <Title>New Data</Title>
   <BackToAdmin>
@@ -240,7 +221,7 @@ return (
       name='productId'
       type='text'
       placeholder='Product Id'
-      onChange ={handelChangeProductId}
+      onChange ={handelChangeFormProductId}
       value = {productId}
     />
     <label htmlFor='category'></label>
@@ -249,7 +230,7 @@ return (
       name='category'
       type='text'
       placeholder='Category'
-      onChange ={handelChangeCategory}
+      onChange ={handelChangeFormCategory}
       value = {category}
     />
     <label htmlFor='name'></label>
@@ -258,7 +239,7 @@ return (
       name='name'
       type='text'
       placeholder='Name'
-      onChange ={handelChangeName}
+      onChange ={handelChangeFormName}
       value = {name}
     />
     <ButtonAddImg onClick={handelAddImg}>Add Picture</ButtonAddImg>
@@ -268,7 +249,7 @@ return (
       name='description'
       type='text'
       placeholder='Description'
-      onChange ={handelChangeDescription}
+      onChange ={handelChangeFormDescription}
       value = {description}
     />
      <label htmlFor='amount'></label>
@@ -277,7 +258,7 @@ return (
       name='amount'
       type='text'
       placeholder='Amount'
-      onChange ={handelChangeAmount}
+      onChange ={handelChangeFormAmount}
       value = {amount}
     />
      <label htmlFor='price'></label>
@@ -286,7 +267,7 @@ return (
       name='price'
       type='text'
       placeholder='Price'
-      onChange ={handelChangePrice}
+      onChange ={handelChangeFormPrice}
       value = {price}
     />
      <Button type="submit">Update Product</Button>
