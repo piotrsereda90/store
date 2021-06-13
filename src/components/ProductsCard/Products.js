@@ -7,7 +7,6 @@ import{Link} from 'react-router-dom';
 import  filterCategories from '../SideBar/FilterCategories';
 import Pagination from './Pagination';
 import { useTranslation } from 'react-i18next';
-import {device} from '../MediaQuery/MediaQuery';
 import PropTypes from 'prop-types';
 
 const ProductContainer = styled.div`
@@ -20,12 +19,6 @@ padding: 20px 10px;
 border-radius: 5px;
 margin:10px;
 overflow:hidden;
-@media ${device.tablet}{
-  width: 40%;
-}
-@media ${device.mobileL}{
-  width: 70%;
-}
 li{
   list-style-type: none;
 a{
@@ -58,11 +51,11 @@ margin-bottom: 20px;
 
 `
 
-const Products = ({ products,fetchProducts}) => {
+const Products = ({ products,fetchProducts,pageNumber}) => {
 
   const {t}=useTranslation();
 
-  const [currentPage, setCurrentPage] = useState(1);
+ 
   const [productsPerPage] =useState(12)
 
   useEffect(()=> {
@@ -71,13 +64,10 @@ const Products = ({ products,fetchProducts}) => {
   },[])
 
   //get current posts
-  const indexOfLastProduct = productsPerPage*currentPage;
+  const indexOfLastProduct = productsPerPage*pageNumber;
   const indexOfFistProduct =  indexOfLastProduct - productsPerPage;
   const currentPosts = products.slice(indexOfFistProduct, indexOfLastProduct)
 
-
-  // current page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   const product = currentPosts.map(item =>
     <ProductContainer
@@ -98,7 +88,7 @@ const Products = ({ products,fetchProducts}) => {
     <>
       <MainTitle>{t('description.part9')}</MainTitle>
       {product}
-      <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
+      <Pagination productsPerPage={productsPerPage} totalProducts={products.length} />
     </>
    );
   }
@@ -108,7 +98,7 @@ const Products = ({ products,fetchProducts}) => {
   }
   const mapStateToProps = (state) => ({
     products:  filterCategories(state.filter,state.products.products),
-    paginationNumberSide: state.pagination,
+    pageNumber: state.products.pageNumber
   })
   const mapDispatchToProps = (dispatch) => ({
     fetchProducts: () => dispatch(fetchProducts())

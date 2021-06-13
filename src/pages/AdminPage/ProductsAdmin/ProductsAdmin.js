@@ -1,15 +1,15 @@
 import React,{useState, useRef} from 'react';
 
+import styled from 'styled-components';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import HeaderAdmin from '../HeaderAdmin';
 import SidebarAdmin from '../SidebarAdmin';
 import SearchProduct from './SearchProduct';
-import {connect} from 'react-redux';
-import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 import api from '../../../api';
 import {fetchProducts} from '../../../components/ProductsCard/containers/redux/reducer_products';
 import {fetchCategories} from '../../../components/SideBar/containers/redux/reducer_categories';
-import PropTypes from 'prop-types';
 
 const Container = styled.div`
 width:calc(100% - 200px);
@@ -288,7 +288,7 @@ const ProductsAdmin = ({productsList, categories, fetchProducts, fetchCategories
         <AddProductContainer><li><Link to='/admin/dashboard/products/addProduct'>+ New Product</Link> </li></AddProductContainer>
       </SectionOne>
     <SectionTwo>
-      <SearchProduct productsList={productsList}searchProduct={searchProduct} categories={categories}/>
+      <SearchProduct productsList={productsList} searchProduct={searchProduct} categories={categories}/>
     </SectionTwo>
     <SectionThree>
       {products}

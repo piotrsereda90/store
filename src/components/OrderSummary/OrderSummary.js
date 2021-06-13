@@ -88,7 +88,7 @@ color:red;
 font-size:10px;
 `
 const Button = styled.button`
-padding: 8px 0;
+padding: 8px 20px;
 margin-top: 10px;
 border: none;
 border-radius: 10px;
@@ -138,7 +138,6 @@ const OrderSummary = ({order}) => {
      street:'',
      houseNumber:'',
      contactPhone: ''
-  
    },
    validationSchema,
    onSubmit: values => {
@@ -152,7 +151,6 @@ const OrderSummary = ({order}) => {
       values.houseNumber,
       values.contactPhone,
       {order}
-    
       )
     .then(result=> {
      if(result.status === 200){
@@ -269,6 +267,6 @@ return (
 };
 const mapStateToProps = (state) =>({
   order: state.order
-}) 
+})
 
 export default connect(mapStateToProps, null)(OrderSummary);

@@ -1,6 +1,8 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+import {changeProductPageNumber} from './containers/redux/reducer_products';
 
 const PaginationContainer = styled.div`
 width: 100%;
@@ -16,7 +18,6 @@ ul{
   li{
     position:relative;
     color:azure;
-    // padding:  4px 5px;
     margin-right: 10px;
     margin-left: 10px;
     overflow:hidden;
@@ -40,7 +41,7 @@ ul{
 }
 `
 
-const Pagination = ({productsPerPage, totalProducts, paginate}) => {
+const Pagination = ({productsPerPage, totalProducts,changeProductPageNumber}) => {
 
   const pageNumber=[];
 
@@ -52,12 +53,13 @@ const Pagination = ({productsPerPage, totalProducts, paginate}) => {
     <li
       key={`pagination ${number}`}
       onClick={
-        ()=> paginate(number)
+        ()=> changeProductPageNumber(number)
       }
       >
       {number}
     </li>
   ))
+
   return (
     <PaginationContainer>
       <ul>
@@ -67,4 +69,8 @@ const Pagination = ({productsPerPage, totalProducts, paginate}) => {
    );
 }
 
-export default Pagination;
+const mapDispatchToProps = (dispatch)=> ({
+  changeProductPageNumber: (pageNumber) => dispatch(changeProductPageNumber(pageNumber))
+})
+
+export default connect(null, mapDispatchToProps)(Pagination);

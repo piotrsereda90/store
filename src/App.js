@@ -8,13 +8,11 @@ import theme from './theme';
 
 function App() {
   return (
-    // <ErrorBoundary>
     <ThemeProvider theme={theme}>
       <Router>
         {renderRoutes()}
       </Router>
       </ThemeProvider>
-    // </ErrorBoundary>
   );
 }
 

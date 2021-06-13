@@ -1,6 +1,6 @@
 const reducerFilterCategories = (state='all', action) => {
   switch(action.type){
-    case"FILTER_CATEGORY":
+    case 'FILTER_CATEGORY':
     return action.filter
     default: return  state
   }

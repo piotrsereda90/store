@@ -135,8 +135,6 @@ const iconUser =<FontAwesomeIcon icon={faUserCircle}/>
 const arrowLeft = <FontAwesomeIcon icon={faReply}/>
 
 const validationSchema = yup.object().shape({
-  productId: yup.string()
-  .required('Product Id is required'),
   category: yup.string()
   .required('Category is required'),
   name: yup.string()
@@ -160,7 +158,6 @@ const AddProduct = () => {
 
   const formik = useFormik({
    initialValues:{
-     productId:'',
      category:'',
      name: '',
      description:'',
@@ -182,9 +179,6 @@ const AddProduct = () => {
     })
   },
  });
- const productIdError = formik.errors.productId? (
-  <ErrorText>{formik.errors.productId}</ErrorText>
-):null
 const categoryError = formik.errors.category? (
   <ErrorText>{formik.errors.category}</ErrorText>
 ):null
@@ -212,16 +206,6 @@ return (
     </li>
   </BackToAdmin>
   <Form onSubmit={formik.handleSubmit}>
-    <label htmlFor='productId'></label>
-    <Input
-      id = 'productId'
-      name='productId'
-      type='text'
-      placeholder='Product Id'
-      onChange ={formik.handleChange}
-      value = {formik.values.productId}
-    />
-    <ErrorContainer>{productIdError}</ErrorContainer>
     <label htmlFor='category'></label>
     <Input
       id = 'category'
@@ -273,8 +257,8 @@ return (
       onChange ={formik.handleChange}
       value = {formik.values.price}
     />
-     <ErrorContainer>{priceError}</ErrorContainer>
-     <Button type="submit">Add Product</Button>
+    <ErrorContainer>{priceError}</ErrorContainer>
+    <Button type="submit">Add Product</Button>
   </Form>
   </Section>
 )

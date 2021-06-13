@@ -1,1 +1,1 @@
-export {default} from './SecureRoute'
+export {default} from './SecureRoute';

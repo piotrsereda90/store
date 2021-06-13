@@ -1,1 +1,1 @@
-export {default}  from './RecommendedProducts'
+export {default}  from './RecommendedProducts';

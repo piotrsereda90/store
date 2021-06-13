@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {fetchCategories} from './containers/redux/reducer_categories';
 import FilterButton from './FilterButton';
 import { useTranslation } from 'react-i18next';
-import {device} from '../MediaQuery/MediaQuery';
 import PropTypes from 'prop-types';
 
 const Aside = styled.aside`
@@ -16,9 +15,6 @@ left:0;
 height:calc(100vh - 90px);
 width: 200px;
 z-index:3;
-@media ${device.tablet}{
-  display:none;
-}
 @media (min-width: 1280px){
   display:block;
 }
@@ -52,9 +48,7 @@ button{
 `
 const SideBar = ({fetchCategories, categories}) => {
 
-  // const {sidebarVisible} = useContext(AppContext)
-
- const {t}= useTranslation();
+const {t}= useTranslation();
 
   useEffect(() =>{
     fetchCategories()
@@ -69,23 +63,23 @@ const SideBar = ({fetchCategories, categories}) => {
   ))
 
   return (
-     <Aside
-    //  style={{display:sidebarVisible? 'block':'none'}}
-     >
-       <ButtonContainer>
-         {category}
-       </ButtonContainer>
-     </Aside>
-     );
+    <Aside
+    >
+      <ButtonContainer>
+        {category}
+      </ButtonContainer>
+    </Aside>
+  );
 }
-SideBar.propTypes ={
+  SideBar.propTypes ={
   categories: PropTypes.array.isRequired,
   fetchCategories: PropTypes.func.isRequired
 }
- const mapStateToProps = (state) => ({
-   categories: state.categories.categories,
- });
- const mapDispatchToProps = (dispatch) => ({
+  const mapStateToProps = (state) => ({
+    categories: state.categories.categories,
+  });
+  const mapDispatchToProps = (dispatch) => ({
    fetchCategories: () => dispatch(fetchCategories())
  });
+
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar);

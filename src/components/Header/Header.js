@@ -1,21 +1,15 @@
-import React,{useState, useEffect, useContext } from 'react'
+import React,{useState, useEffect } from 'react';
 
-import{connect}from 'react-redux';
-import {
-  Link,
-  useHistory
-} from "react-router-dom";
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import{connect}from 'react-redux';
+import {Link, useHistory} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faShoppingBag, faBars} from '@fortawesome/free-solid-svg-icons';
 import image from '../../assets/image/logo_deer.png';
-import { useTranslation } from 'react-i18next';
 import  England from '../../assets/image/England.png';
 import  Poland from '../../assets/image/Poland.png';
 import  German from '../../assets/image/Germany.png';
-import{device} from '../MediaQuery/MediaQuery';
-import {AppContext} from '../../AppContext';
-
 
 const TopBar = styled.header`
 display:flex;
@@ -41,18 +35,12 @@ img{
   display:block;
   height: 50px;
 }
-@media ${device.tablet}{
-  margin-right: 0;
- }
 `
 const  RightToolBar = styled.div`
 display:flex;
 position:relative;
 align-items:center;
 justify-content: center;
-@media ${device.laptop}{
-  flex-direction:column;
-}
 `
 const User = styled.div`
 position:relative;
@@ -68,9 +56,6 @@ cursor:pointer;
   color: #2f3e93;
   transition: .2s;
 }
-@media ${device.tablet}{
- display:none;
-}
 `
 const ShoppingBag = styled.div`
 width: 50px;
@@ -79,14 +64,9 @@ line-height:1;
 font-size:40px;
 list-style-type:none;
 margin-left: 30px;
-@media ${device.tablet}{
-  display:none;
- }
+}
 `
 const StoreName = styled.li`
-@media ${device.mobileL } {
-  display: none;
-}
   list-style-type:none;
   a{
     text-decoration:none;
@@ -161,35 +141,19 @@ button{
     cursor:pointer;
   }
 }
-@media ${device.tablet}{
-  display:none;
- }
 `
 const IconContainer = styled.div`
 display:flex;
-@media ${device.laptop}{
-  padding-top: 20px;
-}
-`
-const Burger = styled.div`
-display:none;
-padding: 20px;
-font-size: 30px;
-color:azure;
-@media ${device.tablet}{
-  display:block;
-}
 `
 const picture = {
  iconUser:<FontAwesomeIcon icon={faUserCircle}/>,
  shoppingBag:<FontAwesomeIcon icon={faShoppingBag}/>,
  burger:<FontAwesomeIcon icon={faBars}/>
 };
+
 function Header({orderList}) {
 
-  const {handelToggleStateSidebar} = useContext(AppContext)
   const {i18n}= useTranslation();
-
 
   const lngs = {
     en: { nativeName: <img src={England} alt="EnglandFlag"/> },
@@ -199,10 +163,6 @@ function Header({orderList}) {
 
   const [loginStatus, setLoginStatus]= useState(false);
   const [UserMenuIsOpen, setUserMenuIsOpen] = useState(false);
-
-  const handelBurger = () => {
-    handelToggleStateSidebar()
-  }
 
   let history = useHistory()
   let session = sessionStorage.getItem('accessToken')
@@ -232,7 +192,6 @@ function Header({orderList}) {
         <Link to='/'><h1>Giwera.com</h1></Link>
       </StoreName>
       <RightToolBar>
-        <Burger onClick={()=>handelBurger()}><span>{picture.burger}</span></Burger>
         <FlagWrapper>
           {Object.keys(lngs).map((lng) => (
            <button key={lng} type="submit" onClick={() => i18n.changeLanguage(lng)}>
@@ -265,10 +224,12 @@ function Header({orderList}) {
           </User>
         </IconContainer>
       </RightToolBar>
-    </TopBar>);
+    </TopBar>
+  );
 }
 
 const mapStateToProps = (state) => ({
   orderList: state.order
 })
+
 export default connect(mapStateToProps, null) (Header);

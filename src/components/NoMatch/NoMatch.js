@@ -5,11 +5,11 @@ import{
 
 const NoMatch = () => {
   let location =useLocation()
-  return ( 
+  return (
     <div>
       No Match Url {location.pathname}
     </div>
    );
 }
- 
+
 export default NoMatch;

@@ -1,4 +1,4 @@
-import api from '../../../../api'
+import api from '../../../../api';
 
 const CATEGORIES_FETCH_REQUESTED = 'CATEGORIES_FETCH_REQUESTED';
 const CATEGORIES_FETCH_SUCCEEDED = 'CATEGORIES_FETCH_SUCCEEDED';
@@ -27,7 +27,6 @@ export const fetchCategories = () => {
       dispatch(fetchSucceeded(response.data.categories));
     })
     .catch(error =>{
-      console.log(error)
       dispatch(fetchFailed())
     });
   }

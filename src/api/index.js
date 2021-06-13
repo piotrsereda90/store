@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const axiosInstance = axios.create({
   baseUrl:'',
   headers:{
@@ -11,7 +10,7 @@ const axiosInstance = axios.create({
 });
 
 const api = {
-   login(email, password){
+  login(email, password){
     return  axiosInstance.post('/login', {email, password});
   },
   logout(){
@@ -38,6 +37,5 @@ const api = {
   addProduct({product}){
     return axiosInstance.post('/addProduct',{product})
   }
-
 }
 export default api;

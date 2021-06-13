@@ -1,13 +1,13 @@
 import React from 'react';
+
+import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import Header from '../Header';
 import {connect} from 'react-redux';
-import styled from 'styled-components';
 import {Link }from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import {addProductAmount,removeProductAmount, removeProductFromBasket } from '../ProductCard/containers/redux/reducer_order';
-import { useTranslation } from 'react-i18next';
-
 
 const BasketContainer = styled.div`
 display:flex;
@@ -101,7 +101,7 @@ const Basket = ({orderList, addProductAmount, removeProductAmount, removeProduct
 
   <OrderWrapper key={`${item.id + key}`}>
     <PictureWrapper>
-      <img src={item.img} alt="product"/>
+      <img src={item.img} alt='product'/>
     </PictureWrapper>
     <ButtonWrapper>
       <button
@@ -123,7 +123,7 @@ const Basket = ({orderList, addProductAmount, removeProductAmount, removeProduct
     </ButtonWrapper>
   </OrderWrapper>
   ))
-  
+
   return (
     <>
       <Header/>
@@ -133,8 +133,8 @@ const Basket = ({orderList, addProductAmount, removeProductAmount, removeProduct
         </BackToShop>
         <OrderListContainer >
           {order}
-       </OrderListContainer>
-        {orderList.length 
+        </OrderListContainer>
+        {orderList.length
         ? <Link to='/order/summary'> <span> {t('description.part41')} </span></Link>
         : null}
       </BasketContainer>

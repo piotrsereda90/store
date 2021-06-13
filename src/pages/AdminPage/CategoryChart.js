@@ -48,16 +48,17 @@ class CategoryChart extends Component{
     };
     }
 
-render() {
-  return (
-    <Chart
-    options={this.state.options}
-    series = {this.state.series}
-    type='line'
-    width = '100%'
-    height ='100%'
-            />
-     );
+  render() {
+    return (
+      <Chart
+        options={this.state.options}
+        series = {this.state.series}
+        type='line'
+        width = '100%'
+        height ='100%'
+      />
+    );
 }
 }
+
 export default CategoryChart

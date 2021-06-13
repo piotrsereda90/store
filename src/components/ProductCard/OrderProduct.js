@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 
+import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {connect} from 'react-redux';
 import{Link} from 'react-router-dom';
-import styled from 'styled-components';
 import {addProductToBasket} from './containers/redux/reducer_order';
-import { useTranslation } from 'react-i18next';
 
 const OrderContainer = styled.div`
 display:flex;
@@ -106,6 +106,6 @@ addProductToBasket: (payload) => dispatch(addProductToBasket(payload))
 })
 
 const mapStateToProps = (state) => ({
-  orderProduct:  state.order
+  orderProduct: state.order
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OrderProduct);

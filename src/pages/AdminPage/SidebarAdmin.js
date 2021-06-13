@@ -22,13 +22,10 @@ ul{
   list-style:none;
 }
 li{
-
   padding:  30px 15px 0 15px ;
   border-bottom: 3px solid transparent;
   transition: .2s;
-  // &:focus {
-  //   border-bottom: 3px solid #2f3e93;
-  // }
+
   &:hover{
     border-bottom: 3px solid #2f3e93;
     cursor:pointer;
@@ -57,27 +54,28 @@ img{
 const SideBarAdmin = () => {
 
   return (
-     <Aside>
-       <ImgContainer>
-         <img src={admin} alt="admin"/>
-       </ImgContainer>
-       <LinkContainer>
-      <ul>
-        <li>
-          <Link to='/admin/dashboard'>Overwrite</Link>
-        </li>
-        <li>
-          <Link to='/admin/dashboard/products'>Products</Link>
-        </li>
-        <li>
-          <Link to='/admin/dashboard/orders'>Orders</Link>
-        </li>
-        <li>
-          <Link to='/admin/dashboard/invoices' >invoices</Link>
-        </li>
-      </ul>
+    <Aside>
+      <ImgContainer>
+        <img src={admin} alt="admin"/>
+      </ImgContainer>
+      <LinkContainer>
+        <ul>
+          <li>
+            <Link to='/admin/dashboard'>Overwrite</Link>
+          </li>
+          <li>
+            <Link to='/admin/dashboard/products'>Products</Link>
+          </li>
+          <li>
+            <Link to='/admin/dashboard/orders'>Orders</Link>
+          </li>
+          <li>
+            <Link to='/admin/dashboard/invoices' >invoices</Link>
+          </li>
+        </ul>
       </LinkContainer>
-     </Aside>
-     );
+    </Aside>
+  );
 }
+
 export default SideBarAdmin;

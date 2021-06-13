@@ -51,15 +51,15 @@ const orderReducer = (state=[], action) => {
           amount: removeProduct? product.amount -1:product.amount
         }
       })
-      case REMOVE_PRODUCT_FROM_BASKET:
+    case REMOVE_PRODUCT_FROM_BASKET:
       const index = state.map(item => item.id).indexOf(action.id);
       const stateTemp = [
         ...state.slice(0,index),
         ...state.slice(index +1)
       ]
-      return stateTemp
+    return stateTemp
 
-      default: return state
-    };
+    default: return state
+  };
 };
 export default orderReducer;

@@ -13,9 +13,9 @@ const INITIAL_STATE = {
 const fetchRequested = () => ({type:FETCH_RECOMMENDED_PRODUCTS_REQUESTED});
 const fetchFailed = () => ({type: FETCH_RECOMMENDED_PRODUCTS_FAILED})
 const fetchSucceeded = (data) => ({
-    type: FETCH_RECOMMENDED_PRODUCTS_SUCCEEDED,
-    payload:data
-  });
+  type: FETCH_RECOMMENDED_PRODUCTS_SUCCEEDED,
+  payload:data
+});
 
   export const fetchRecommendedProducts= () => {
     return function(dispatch){
@@ -39,20 +39,20 @@ const fetchSucceeded = (data) => ({
           isLoading: true,
           isError:false
         }
-        case FETCH_RECOMMENDED_PRODUCTS_SUCCEEDED:
-          return{
-            ...state,
-            isLoading: false,
-            isError:false,
-            recommendedProducts: action.payload
-          }
-        case FETCH_RECOMMENDED_PRODUCTS_FAILED:
+      case FETCH_RECOMMENDED_PRODUCTS_SUCCEEDED:
+        return{
+          ...state,
+          isLoading: false,
+          isError:false,
+          recommendedProducts: action.payload
+        }
+      case FETCH_RECOMMENDED_PRODUCTS_FAILED:
         return{
           ...state,
           isLoading:false,
           isError:true
         }
-        default: return state
+      default: return state
     }
   }
   export default reducerRecommendedProducts

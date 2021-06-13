@@ -130,21 +130,6 @@ const style={
 }
 const UpdateProduct = ({productsList}) => {
 
-  // use it if you wont turn off auto fill 
-
-  // function useInput(initialValue=''){
-  //   const [value, setValue] = useState('');
-  //   const handelChange = (e) => {
-  //     setValue(e.target.value);
-  //   };
-  //   return[value, handelChange];
-  //  };
-  //  const[productId, handelChangeProductId] = useInput('');
-  //  const[category, handelChangeCategory] = useInput('');
-  //  const[name, handelChangeName] = useInput('');
-  //  const[description, handelChangeDescription] = useInput('');
-  //  const[amount, handelChangeAmount] = useInput('');
-  //  const[price, handelChangePrice] = useInput('');
 
    const[productId, handelChangeProductId] = useState('');
    const[category, handelChangeCategory] = useState('');
@@ -160,7 +145,6 @@ const UpdateProduct = ({productsList}) => {
    const handelChangeFormDescription = (e) => handelChangeDescription(e.target.value)
    const handelChangeFormAmount = (e) => handelChangeAmount(e.target.value)
    const handelChangeFormPrice = (e) => handelChangePrice(e.target.value)
-  
 
   let history = useHistory();
 
@@ -191,8 +175,8 @@ const UpdateProduct = ({productsList}) => {
 const handelAddImg = () => {}
 
 useEffect(()=>{
-  product.map(item =>{
-    const {id,category, name,img,description,amount,price}=item
+  product.forEach(item =>{
+    const {id,category, name,description,amount,price}=item
     handelChangeProductId(id)
     handelChangeCategory(category)
     handelChangeName(name)
@@ -201,7 +185,7 @@ useEffect(()=>{
     handelChangePrice(price)
    }
    )
-},[])
+},[])// eslint-disable-line react-hooks/exhaustive-deps
 
 return (
   <Section>

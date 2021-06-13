@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import background from '../../assets/image/background_deer.jpg';
 import { useTranslation } from 'react-i18next';
-import{device} from '../MediaQuery/MediaQuery';
 
 const FooterContainer = styled.footer`
 display:flex;
@@ -21,10 +20,6 @@ justify-content:center;
 min-height: 600px;
 h1{
   margin-bottom: 50px;
-}
-@media ${device.tablet}{
-  width: 100%;
-  margin-left: 0;
 }
 `
 const FirstSection = styled.div`
@@ -101,17 +96,17 @@ const Footer = () => {
   }
   return (
     <FooterContainer>
-       <FirstSection>
+      <FirstSection>
         <div style={{paddingLeft: 30}}>
-        <h4>{t('description.part11')}</h4>
-            <ul>
-              <li>48 528 93 65</li>
-              <li>48 752 52 55</li>
-              <li>giwera@sklep.com</li>
-            </ul>
+          <h4>{t('description.part11')}</h4>
+          <ul>
+            <li>48 528 93 65</li>
+            <li>48 752 52 55</li>
+            <li>giwera@sklep.com</li>
+          </ul>
         </div>
         <div>
-        <h4>{t('description.part12')}</h4>
+          <h4>{t('description.part12')}</h4>
             <ul>
               <li>{t('description.part13')}</li>
               <li>FAQ</li>
@@ -121,7 +116,7 @@ const Footer = () => {
             </ul>
         </div>
         <div>
-        <h4>{t('description.part16')}</h4>
+          <h4>{t('description.part16')}</h4>
             <ul>
               <li>{t('description.part17')}</li>
               <li>{t('description.part18')} </li>
@@ -130,7 +125,7 @@ const Footer = () => {
             </ul>
         </div>
         <div>
-        <h4>NEWSLETTER</h4>
+          <h4>NEWSLETTER</h4>
           <form action="">
             <input type="text" placeholder={t('description.part21')}/>
             <button onClick={handelClick}>{t('description.part22')}</button>
@@ -138,40 +133,40 @@ const Footer = () => {
             <p>{t('description.part24')}</p>
           </form>
         </div>
-       </FirstSection>
-       <SecondSection>
-         <div style={{paddingLeft: 30}}>
-           <h4>{t('description.part25')}</h4>
-           <ul>
-             <li>{t('description.part26')}</li>
-             <li>{t('description.part27')}</li>
-           </ul>
-         </div>
-         <div>
+      </FirstSection>
+      <SecondSection>
+        <div style={{paddingLeft: 30}}>
+          <h4>{t('description.part25')}</h4>
+          <ul>
+            <li>{t('description.part26')}</li>
+            <li>{t('description.part27')}</li>
+          </ul>
+        </div>
+        <div>
          <h4>{t('description.part28')}</h4>
            <ul>
              <li>{t('description.part29')}</li>
              <li>{t('description.part30')}</li>
              <li>{t('description.part31')}</li>
            </ul>
-         </div>
-         <div>
+        </div>
+        <div>
          <h4>{t('description.part32')}</h4>
            <ul>
              <li>{t('description.part33')}</li>
              <li>{t('description.part34')}</li>
            </ul>
-         </div>
-         <div>
-           <h4>{t('description.part35')}</h4>
-           <div>
-             <div></div>
-             <div></div>
-             <div></div>
-             <div></div>
-             <div></div>
-           </div>
-         </div>
+        </div>
+        <div>
+          <h4>{t('description.part35')}</h4>
+          <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
        </SecondSection>
     </FooterContainer>
    );

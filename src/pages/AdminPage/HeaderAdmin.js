@@ -128,28 +128,27 @@ function Header() {
 
   return (
     <TopBar>
-    <LogoImg>
-      <h2>Admin Panel</h2>
-    </LogoImg>
-    <StoreName>
-      <Link to='/'><h1>Giwera.com</h1></Link>
-      </StoreName>
-    <RightToolBar>
-      <User
-        onClick={handelUserMenu}>
-        <img src={admin} alt=""/>
-        {UserMenuIsOpen
-        ?<UserMenu>
-          <UserMenuUl>
-            <UserMenuLi><UserMenuLink to='/admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
-            <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
-          </UserMenuUl>
-        </UserMenu>
-        : null}
-      </User>
-    </RightToolBar>
-
-  </TopBar>
-    );
+      <LogoImg>
+        <h2>Admin Panel</h2>
+      </LogoImg>
+      <StoreName>
+        <Link to='/'><h1>Giwera.com</h1></Link>
+        </StoreName>
+      <RightToolBar>
+        <User
+          onClick={handelUserMenu}>
+          <img src={admin} alt=""/>
+          {UserMenuIsOpen
+          ?<UserMenu>
+            <UserMenuUl>
+              <UserMenuLi><UserMenuLink to='/admin/dashboard'>Admin panel</UserMenuLink></UserMenuLi> 
+              <UserMenuLi onClick={handelLogIn}>{loginLabel}</UserMenuLi>
+            </UserMenuUl>
+          </UserMenu>
+          : null}
+        </User>
+      </RightToolBar>
+    </TopBar>
+  );
 }
 export default Header;

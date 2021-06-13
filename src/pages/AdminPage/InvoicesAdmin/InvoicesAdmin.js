@@ -1,9 +1,9 @@
 import React from 'react';
 
+import styled from 'styled-components';
 import HeaderAdmin from '../HeaderAdmin';
 import SidebarAdmin from '../SidebarAdmin';
 
-import styled from 'styled-components';
 
 const Container = styled.div`
 width:calc(100% - 200px);
@@ -18,7 +18,7 @@ color:'azure';
 
 
 const InvoicesAdmin = () => {
-  return ( 
+  return (
     <>
     <HeaderAdmin/>
     <SidebarAdmin/>

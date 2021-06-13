@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 
+import styled from 'styled-components';
 import api from '../../api/';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useFormik  } from 'formik';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import * as yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -184,7 +184,7 @@ return (
      <Button type="submit">sign in</Button>
   </Form>
   <ForgotPasswordSignIn><span>Forgot password?</span><span>Don't have an account? Sign up</span></ForgotPasswordSignIn>
-  <Tips><span>You can use babanarowerze5@gmail.com and password jakiehaslo</span></Tips>
+  <Tips><span>You can use admin@gmail.com and password admin</span></Tips>
   </section>
 )
 };

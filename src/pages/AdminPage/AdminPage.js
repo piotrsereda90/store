@@ -110,14 +110,16 @@ const AdminPage = () => {
       <SectionOne>
         Overview
       </SectionOne>
-    <SectionTwo>
+      <SectionTwo>
         <SectionTwoItem>
           <div>
             <TitleFirstSection>Sales</TitleFirstSection>
             <CurrentValue>$152,996.00</CurrentValue>
             <LastYearValue>vs.$121,420.00  last year</LastYearValue>
           </div>
-          <PictureWrapper><img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/></PictureWrapper>
+          <PictureWrapper>
+            <img src={arrowUp} alt='https://pl.freepik.com/wektory/strzalka'/>
+          </PictureWrapper>
         </SectionTwoItem>
         <SectionTwoItem>
           <div>
@@ -125,7 +127,9 @@ const AdminPage = () => {
             <CurrentValue>$99,700.00</CurrentValue>
             <LastYearValue>vs.$68,300.00  last year</LastYearValue>
           </div>
-          <PictureWrapper><img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/></PictureWrapper>
+          <PictureWrapper>
+            <img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/>
+          </PictureWrapper>
         </SectionTwoItem>
         <SectionTwoItem>
           <div>
@@ -133,7 +137,9 @@ const AdminPage = () => {
             <CurrentValue>$99,700.00</CurrentValue>
             <LastYearValue>vs.$68,300.00  last year</LastYearValue>
           </div>
-          <PictureWrapper><img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/></PictureWrapper>
+          <PictureWrapper>
+            <img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/>
+          </PictureWrapper>
         </SectionTwoItem>
         <SectionTwoItem>
           <div>
@@ -141,7 +147,9 @@ const AdminPage = () => {
             <CurrentValue >$99,700.00</CurrentValue>
             <LastYearValue>vs.$68,300.00  last year</LastYearValue>
           </div>
-          <PictureWrapper><img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/></PictureWrapper>
+          <PictureWrapper>
+            <img src={arrowUp} alt="https://pl.freepik.com/wektory/strzalka"/>
+          </PictureWrapper>
         </SectionTwoItem>
       </SectionTwo>
       <SectionThree>

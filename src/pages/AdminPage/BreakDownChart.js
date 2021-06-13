@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Chart from "react-apexcharts";
+import Chart from 'react-apexcharts';
 
 
 class BreakDownChart extends Component{
@@ -12,7 +12,6 @@ class BreakDownChart extends Component{
       chartOptions:{
         labels:['Marketing','Outsourcing','Strategy']
       }
-
     };
     }
 
@@ -25,8 +24,9 @@ render() {
       type='donut'
       width = '100%'
       height ='100%'
-            />
+    />
      );
 }
 }
+
 export default BreakDownChart
